@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{022F9F3E-8085-4314-9EA9-7989CBB1526B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EpyG</RootNamespace>
+    <AssemblyName>EpyG</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;#pragma warning disable 1591</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.0.34.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\Pages\Design\DesignCompPoolVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\DesignGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\DesignSorterGenomeTypeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\DesignSorterGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\DesignSwitchableGroupGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\DesignSorterGenomeSpecIndexVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\DesignSorterGenomeSpecPermutationVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\EvolveCompPoolVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\PoolEnsemblesVm.cs" />
+    <Compile Include="ViewModel\Pages\Gallery\GalleryCompPoolsVm.cs" />
+    <Compile Include="ViewModel\Pages\Gallery\GallerySortersVm.cs" />
+    <Compile Include="ViewModel\Pages\Gallery\HoflVm.cs" />
+    <Compile Include="ViewModel\Pages\Settings\AboutVm.cs" />
+    <Compile Include="ViewModel\Pages\Settings\PerformanceVm.cs" />
+    <Compile Include="ViewModel\Pages\Welcome\IntroductionVm.cs" />
+    <Compile Include="View\Content\EnsembleParams.xaml.cs">
+      <DependentUpon>EnsembleParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\EnsembleSettings.xaml.cs">
+      <DependentUpon>EnsembleSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\DesignGenome.xaml.cs">
+      <DependentUpon>DesignGenome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenome.xaml.cs">
+      <DependentUpon>DesignSorterGenome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeIndex.xaml.cs">
+      <DependentUpon>DesignSorterGenomeIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeLoader.cs" />
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomePermutation.xaml.cs">
+      <DependentUpon>DesignSorterGenomePermutation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecPermutation.xaml.cs">
+      <DependentUpon>DesignSorterGenomeSpecPermutation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeType.xaml.cs">
+      <DependentUpon>DesignSorterGenomeType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\SwitchableGroup\DesignSwitchableGroupGenome.xaml.cs">
+      <DependentUpon>DesignSwitchableGroupGenome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecIndex.xaml.cs">
+      <DependentUpon>DesignSorterGenomeSpecIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\RandomSampler\RandomSorters.xaml.cs">
+      <DependentUpon>RandomSorters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SorterRandomSampler.cs" />
+    <Compile Include="ViewModel\Content\CompPoolSettingsVm.cs" />
+    <Compile Include="ViewModel\Content\EnsembleParamsVm.cs" />
+    <Compile Include="ViewModel\Content\EnsembleSettingsVm.cs" />
+    <Compile Include="ViewModel\Content\EnsembleVm.cs" />
+    <Compile Include="ViewModel\Pages\HomeVm.cs" />
+    <Compile Include="ViewModel\Content\RandomSorterSettingsVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\RandomSortersVm.cs" />
+    <Compile Include="View\Pages\Design\CompPool\DesignCompPool.xaml.cs">
+      <DependentUpon>DesignCompPool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\RandomSearch\RandomSearch.xaml.cs">
+      <DependentUpon>RandomSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\RandomSearch\RandomSorterGenomes.xaml.cs">
+      <DependentUpon>RandomSorterGenomes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\RandomSearch\RandomSorterGenomesByMutation.xaml.cs">
+      <DependentUpon>RandomSorterGenomesByMutation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Design\RandomSearch\RandomSorterGenomesDeNovo.xaml.cs">
+      <DependentUpon>RandomSorterGenomesDeNovo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Test\PoolEnsembles\PoolEnsembles.xaml.cs">
+      <DependentUpon>PoolEnsembles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Test\CompPool\EvolveCompPool.xaml.cs">
+      <DependentUpon>EvolveCompPool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Gallery\GalleryCompPools\GalleryCompPools.xaml.cs">
+      <DependentUpon>GalleryCompPools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Gallery\HOF\Hof.xaml.cs">
+      <DependentUpon>Hof.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Gallery\GallerySorters\GallerySorters.xaml.cs">
+      <DependentUpon>GallerySorters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Settings\Performance.xaml.cs">
+      <DependentUpon>Performance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Welcome\Intro\Introduction.xaml.cs">
+      <DependentUpon>Introduction.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Content\RandomSorterSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\DesignGenome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\CompPool\DesignCompPool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomePermutation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecPermutation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\SwitchableGroup\DesignSwitchableGroupGenome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\RandomSearch\RandomSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\RandomSearch\RandomSorterGenomes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\RandomSearch\RandomSorterGenomesByMutation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\RandomSearch\RandomSorterGenomesDeNovo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Test\PoolEnsembles\PoolEnsembles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Test\CompPool\EvolveCompPool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Gallery\GalleryCompPools\GalleryCompPools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Gallery\HOF\Hof.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Gallery\GallerySorters\GallerySorters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="View\Content\RandomSorterSettingsControl.xaml.cs">
+      <DependentUpon>RandomSorterSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Pages\Settings\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Pages\Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Content\EnsembleParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\EnsembleSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Settings\Performance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Settings\Appearance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Pages\Settings\Appearance.xaml.cs">
+      <DependentUpon>Appearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Pages\Settings\AppearanceVm.cs" />
+    <Page Include="View\Content\Ensemble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Design\RandomSampler\RandomSorters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Settings\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Content\Ensemble.xaml.cs">
+      <DependentUpon>Ensemble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Settings\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="View\Pages\Welcome\Intro\Introduction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FirstFloor.ModernUI.CommonUI\FirstFloor.ModernUI.CommonUI.csproj">
+      <Project>{59c18c3d-4b69-45a4-83d4-1072da8d920c}</Project>
+      <Name>FirstFloor.ModernUI.CommonUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstFloor.ModernUI\FirstFloor.ModernUI.csproj">
+      <Project>{9a653a28-fe46-40e8-a14f-48b0e325165d}</Project>
+      <Name>FirstFloor.ModernUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Genomic\Genomic.csproj">
+      <Project>{2d600b9d-d592-422b-93cc-0f3532438b45}</Project>
+      <Name>Genomic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathUtils\MathUtils.csproj">
+      <Project>{45d0ac20-8adf-4830-8ce9-37749385834f}</Project>
+      <Name>MathUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SorterGenome\SorterGenome.csproj">
+      <Project>{e4ccbd87-d943-42ba-871c-3324a2ec857b}</Project>
+      <Name>SorterGenome</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sorting.Json\Sorting.Json.csproj">
+      <Project>{55a66926-6f0e-4423-92d2-913e039ef3cf}</Project>
+      <Name>Sorting.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sorting\Sorting.csproj">
+      <Project>{e5827c97-e3d1-4f30-b493-7bea79dbd877}</Project>
+      <Name>Sorting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{31db7822-1f4a-44f1-91fd-2a016baa1b87}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

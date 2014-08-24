@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="EpyG.View.Pages.Design.RandomSampler.RandomSorters"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:EpyG.ViewModel"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:content="clr-namespace:EpyG.View.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="700">
+    <Grid Style="{StaticResource ContentRoot}">
+
+        <Grid.Resources>
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Margin" Value="3" />
+            </Style>
+        </Grid.Resources>
+
+        
+        <!-- create viewmodel -->
+        <!--<Grid.DataContext>
+            <viewModel:RandomSortersVm/>
+        </Grid.DataContext>-->
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Margin="{StaticResource SplitLeft}">
+            
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Top" Text="SETTINGS" Style="{StaticResource Heading2}" />
+
+                <Border 
+                    Margin="5,25,5,20"
+                    DockPanel.Dock="Top"
+                    IsEnabled="{Binding Busy, Converter={mui:BoolNegateConverter}}">
+                    
+                    <content:RandomSorterSettingsControl 
+                             DataContext="{Binding RandomSorterSettingsVm}" />
+
+                </Border>
+
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="20" HorizontalAlignment="Center">
+                    <Label Margin="5" Content="Elapsed time:"/>
+                    <TextBlock Margin="5" Text="{Binding ElapsedTime,StringFormat=hh\\:mm\\:ss}"/>
+                </StackPanel>
+
+                <WrapPanel DockPanel.Dock="Top" Margin="20" HorizontalAlignment="Center">
+                    <Button Command="{Binding RandGenCommand}" Content="Start" />
+                    <Button Command="{Binding StopRandGenCommand}"  Content="Stop" />
+                    <Button Command="{Binding ResetCommand}"  Content="Reset" />
+                </WrapPanel>
+
+            </DockPanel>
+            
+        </ScrollViewer>
+        
+        <GridSplitter Grid.Column="1" />
+        <ScrollViewer Grid.Column="2 " Margin="{StaticResource SplitRight}">
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="8"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Margin="5">
+                    <TextBlock Text="Usage counts"/>
+                    <TextBox IsReadOnly="True" VerticalAlignment="Stretch"
+                        MinWidth="50" Text="{Binding Report, Mode=OneWay}"/>
+                </StackPanel>
+                
+                <GridSplitter Grid.Row="1" />
+
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Collected sorters" Style="{StaticResource Heading2}" />
+                    <TextBlock Text="Content goes here" />
+                </StackPanel>
+                
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</UserControl>

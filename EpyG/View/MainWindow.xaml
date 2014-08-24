@@ -1,0 +1,54 @@
+﻿<mui:ModernWindow x:Class="EpyG.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+        Title="EPIG" IsTitleVisible="True"
+        ContentSource="/View/Pages/Home.xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d"
+        Height="800"
+        d:DesignHeight="700" d:DesignWidth="700">
+    
+
+    <mui:ModernWindow.MenuLinkGroups>
+
+
+        <mui:LinkGroup DisplayName="welcome">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="introduction" Source="/View/Pages/Welcome/Intro/Introduction.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+        <mui:LinkGroup DisplayName="gallery">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="hall of fame" Source="/View/Pages/Gallery/HOF/Hof.xaml" />
+                <mui:Link DisplayName="sorters" Source="/View/Pages/Gallery/GallerySorters/GallerySorters.xaml" />
+                <mui:Link DisplayName="comp pools" Source="/View/Pages/Gallery/GalleryCompPools/GalleryCompPools.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+        <mui:LinkGroup DisplayName="design">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="genome" Source="/View/Pages/Design/Genome/DesignGenome.xaml" />
+                <mui:Link DisplayName="comp pool" Source="/View/Pages/Design/CompPool/DesignCompPool.xaml" />
+                <mui:Link DisplayName="random sampler" Source="/View/Pages/Design/RandomSampler/RandomSorters.xaml" />
+                <mui:Link DisplayName="random search" Source="/View/Pages/Design/RandomSearch/RandomSorterGenomes.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+
+        <mui:LinkGroup DisplayName="test">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="comp pool" Source="/View/Pages/Test/CompPool/EvolveCompPool.xaml" />
+                <mui:Link DisplayName="pool ensembles" Source="/View/Pages/Test/PoolEnsembles/PoolEnsembles.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+    </mui:ModernWindow.MenuLinkGroups>
+
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="settings" Source="/View/Pages/Settings/Settings.xaml" />
+    </mui:ModernWindow.TitleLinks>
+</mui:ModernWindow>
