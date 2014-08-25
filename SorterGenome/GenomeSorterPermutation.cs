@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Genomic;
 using MathUtils;
+using MathUtils.Collections;
 using MathUtils.Rand;
 using Sorting.KeyPairs;
 using Sorting.Sorters;
@@ -86,7 +87,8 @@ namespace SorterGenome
         {
             return genomeSorterPermutation
                         .Sequence
-                        .ToKeyPairs()
+                        .ToTuples()
+                        .ToKeyPairs(ignoreErrors: false)
                         .ToSorter(genomeSorterPermutation.KeyCount);
         }
 

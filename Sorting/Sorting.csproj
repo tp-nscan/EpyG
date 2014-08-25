@@ -74,7 +74,6 @@
     <Compile Include="Evals\SorterEval.cs" />
     <Compile Include="Evals\SwitchEval.cs" />
     <Compile Include="Properties\Entities\IEntityFunctionParams.cs" />
-    <Compile Include="KeyPairs\KeyPairSet.cs" />
     <Compile Include="Evals\SortResult.cs" />
     <Compile Include="Sorters\SorterConstants.cs" />
     <Compile Include="Stages\SorterStage.cs" />

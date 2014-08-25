@@ -321,6 +321,10 @@
       <Project>{45d0ac20-8adf-4830-8ce9-37749385834f}</Project>
       <Name>MathUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SorterControls\SorterControls.csproj">
+      <Project>{0d0ad96f-ffa4-4508-a3d2-50a84e64f457}</Project>
+      <Name>SorterControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SorterGenome\SorterGenome.csproj">
       <Project>{e4ccbd87-d943-42ba-871c-3324a2ec857b}</Project>
       <Name>SorterGenome</Name>

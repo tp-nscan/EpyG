@@ -21,6 +21,18 @@ namespace Sorting.Sorters
             return new SorterImpl(keyPairs, keyCount);
         }
 
+        public static ISorter ToSorter(this IEnumerable<int> keyIndexes, int keyCount)
+        {
+            return keyIndexes.Select(KeyPairRepository.AtIndex)
+                    .ToSorter(keyCount);
+        }
+
+        public static ISorter ToSorter(this IEnumerable<uint> keyIndexes, int keyCount)
+        {
+            return keyIndexes.Select(i => KeyPairRepository.AtIndex((int)i))
+                    .ToSorter(keyCount);
+        }
+
         public static ISorter ToSorter(this IReadOnlyList<IKeyPair> keyPairs, IEnumerable<uint> keyPairChoices, int keyCount)
         {
             return keyPairs.PickMembers(keyPairChoices).ToSorter(keyCount);
@@ -28,37 +40,14 @@ namespace Sorting.Sorters
 
         public static ISorter ToSorter(this IRando rando, int keyCount, int keyPairCount)
         {
-           //return rando.RandomKeyPairs(keyCount).Take(keyPairCount).ToSorter(keyCount);
-           return rando.RandomKeyPairsFullStage(keyCount).Take(keyPairCount).ToSorter(keyCount);
+           return rando.ToKeyPairs(keyCount).Take(keyPairCount).ToSorter(keyCount);
         }
 
         public static ISorter ToSorter(this IRando rando, IReadOnlyList<IKeyPair> keyPairs, int keyPairCount, int keyCount)
         {
             return rando.Pick(keyPairs).Take(keyPairCount).ToSorter(keyCount);
         }
- 
-        public static IEnumerable<ISorter> Mutate(this ISorter sorter, IRando rando, double mutationRate)
-        {
-            var randoK = rando.Spawn();
-            var keyPairList = KeyPairRepository.KeyPairSet(sorter.KeyCount).KeyPairs;
-            var newb = randoK.Pick(keyPairList).ToMoveNext();
-            while (true)
-            {
-                yield return new SorterImpl
-                    (
-                        keyPairs: sorter.KeyPairs.MutateInsertDelete
-                        (
-                             rando.Spawn().ToBoolEnumerator(mutationRate),       
-                             rando.Spawn().ToBoolEnumerator(mutationRate),
-                             rando.Spawn().ToBoolEnumerator(mutationRate),
-                             T => newb.Next(),
-                             T => newb.Next(),
-                             T => newb.Next()
-                        ),
-                        keyCount: sorter.KeyCount
-                    );
-            }
-        }
+
     }
 
     class SorterImpl : ISorter

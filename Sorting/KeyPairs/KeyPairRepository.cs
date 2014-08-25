@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MathUtils.Collections;
 using MathUtils.Rand;
+using Roslyn.Compilers.CSharp;
 
 namespace Sorting.KeyPairs
 {
@@ -14,12 +16,161 @@ namespace Sorting.KeyPairs
 
     public static class KeyPairRepository
     {
-        private static readonly List<KeyPairSet> KeyPairSets = Enumerable.Repeat<KeyPairSet>(null, 64).ToList();
-        public static IEnumerable<IKeyPair> RandomKeyPairs(this IRando rando, int keyCount)
+
+        #region private 
+
+        private static readonly IKeyPair[] keyPairs;
+
+        static KeyPairRepository()
         {
+            keyPairs = new IKeyPair[KeyPairSetSizeForKeyCount(MaxKeyCount)];
+
+            for (var hiKey = 1; hiKey < MaxKeyCount; hiKey++)
+            {
+                for (var lowKey = 0; lowKey < hiKey; lowKey++)
+                {
+                    var keyPairIndex = KeyPairIndex(lowKey, hiKey);
+                    keyPairs[keyPairIndex] = new KeyPairImpl
+                        (
+                            index: KeyPairIndex(lowKey, hiKey),
+                            lowKey: lowKey,
+                            hiKey: hiKey
+                        );
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region repository properties
+
+        public const int MaxKeyCount = 64;
+
+        public static int KeyPairSetSizeForKeyCount(int keyCount)
+        {
+            return (keyCount * (keyCount - 1)) / 2;
+        }
+
+        public static IEnumerable<IKeyPair> AllKeyPairsForKeyCount(int keyCount)
+        {
+            for (var i = 0; i < KeyPairSetSizeForKeyCount(keyCount); i++)
+            {
+                yield return keyPairs[i];
+            }
+        }
+
+
+
+
+
+
+        #endregion
+
+
+        #region keypair access
+
+        public static IKeyPair AtIndex(int dex)
+        {
+            return keyPairs[dex];
+        }
+
+        public static int KeyPairIndex(int key1, int key2)
+        {
+            int lowKey;
+            int hiKey;
+
+            if (key1 == key2)
+            {
+                return -1;
+            }
+
+            if (key1 > key2)
+            {
+                lowKey = key2;
+                hiKey = key1;
+            }
+            else
+            {
+                hiKey = key2;
+                lowKey = key1;
+            }
+
+            if (lowKey < 0)
+            {
+                return -1;
+            }
+
+            if (hiKey >= MaxKeyCount)
+            {
+                return -1;
+            }
+            return KeyPairSetSizeForKeyCount(hiKey) + lowKey;
+        }
+
+        public static int KeyPairIndex(uint key1, uint key2)
+        {
+            int lowKey;
+            int hiKey;
+
+            if (key1 == key2)
+            {
+                return -1;
+            }
+
+            if (key1 > key2)
+            {
+                lowKey = (int) key2;
+                hiKey = (int) key1;
+            }
+            else
+            {
+                hiKey = (int) key2;
+                lowKey = (int) key1;
+            }
+
+            if (lowKey < 0)
+            {
+                return -1;
+            }
+
+            if (hiKey >= MaxKeyCount)
+            {
+                return -1;
+            }
+            return KeyPairSetSizeForKeyCount(hiKey) + lowKey;
+        }
+
+        public static IKeyPair KeyPairFromKeys(int key1, int key2)
+        {
+            return AtIndex(KeyPairIndex(key1, key2));
+        }
+
+        public static bool TryKeyPairFromKeys(int key1, int key2, out IKeyPair result)
+        {
+            var index = KeyPairIndex(key1, key2);
+
+            if (index == -1)
+            {
+                result = null;
+                return false;
+            }
+
+            result = AtIndex(index);
+            return true;
+        }
+
+        #endregion
+
+
+        #region random generation
+
+        public static IEnumerable<IKeyPair> ToKeyPairs(this IRando rando, int keyCount)
+        {
+            var keyIndexCount = KeyPairSetSizeForKeyCount(keyCount);
             while (true)
             {
-                yield return AtIndex(rando.NextInt(KeyPairSetSizeForKeyCount(keyCount)));
+                yield return AtIndex(rando.NextInt(keyIndexCount));
             }
         }
 
@@ -34,149 +185,44 @@ namespace Sorting.KeyPairs
             while (true)
             {
                 var scrambles = keys.FisherYatesShuffle(rando);
-                yield return scrambles.ToKeyPairs().ToList();
+                yield return scrambles.ToTuples().ToKeyPairs(false).ToList();
             }
         }
 
-        public static IEnumerable<IKeyPair> ToKeyPairs(this IEnumerable<int> keys)
+        #endregion
+
+        #region access using tuples
+
+        public static IEnumerable<IKeyPair> ToKeyPairs(this IEnumerable<Tuple<int, int>> keys, bool ignoreError)
         {
-            var keyEnumerator = keys.GetEnumerator();
-            while (true)
+            var enumerator = keys.GetEnumerator();
+            if (ignoreError)
             {
-                if (! keyEnumerator.MoveNext())
+                while (enumerator.MoveNext())
                 {
-                    yield break;
+                    IKeyPair keyOut;
+                    if (TryKeyPairFromKeys(enumerator.Current.Item1, enumerator.Current.Item2, out keyOut))
+                    {
+                        yield return keyOut;
+                    }
                 }
-
-                var valA = keyEnumerator.Current;
-
-                if (!keyEnumerator.MoveNext())
-                {
-                    yield break;
-                }
-
-                var valB = keyEnumerator.Current;
-
-                yield return (valA < valB) ? ForKeys(valA, valB) : ForKeys(valB, valA);
             }
-        }
-
-        public static IEnumerable<IKeyPair> ToKeyPairs(this IEnumerable<uint> keys)
-        {
-            var keyEnumerator = keys.GetEnumerator();
-            while (true)
+            else
             {
-                if (!keyEnumerator.MoveNext())
+                while (enumerator.MoveNext())
                 {
-                    yield break;
-                }
-
-                var valA = keyEnumerator.Current;
-
-                if (!keyEnumerator.MoveNext())
-                {
-                    yield break;
-                }
-
-                var valB = keyEnumerator.Current;
-
-                yield return (valA < valB) ? ForKeys((int) valA, (int) valB) : ForKeys((int) valB, (int) valA);
-            }
-        }
-
-        static KeyPairRepository()
-        {
-            KeyPairs = new IKeyPair[KeyPairSetSizeForKeyCount(MaxKeyCount)];
-
-            for (var hiKey = 1; hiKey < MaxKeyCount; hiKey++)
-            {
-                for (var lowKey = 0; lowKey < hiKey; lowKey++)
-                {
-                    var keyPairIndex = KeyPairIndex(lowKey, hiKey);
-                    KeyPairs[keyPairIndex] = new KeyPair(keyPairIndex, lowKey, hiKey);
+                    yield return KeyPairFromKeys(enumerator.Current.Item1, enumerator.Current.Item2);
                 }
             }
         }
 
-        public static int KeyPairIndex(int lowKey, int hiKey)
+        public static IEnumerable<IKeyPair> ToKeyPairs(this IEnumerable<Tuple<uint, uint>> keys, bool ignoreErrors)
         {
-            if (hiKey == 1)
-            {
-                return 0;
-            }
-
-            return KeyPairSetSizeForKeyCount(hiKey) + lowKey;
+            return keys.Select(k => new Tuple<int,int>((int) k.Item1, (int)k.Item2))
+                       .ToKeyPairs(ignoreErrors);
         }
 
-        private static readonly IKeyPair[] KeyPairs;
-        public static IEnumerable<IKeyPair> KeyPairsForKeyCount(int keyCount)
-        {
-            for (var i = 0; i < KeyPairSetSizeForKeyCount(keyCount); i++)
-            {
-                yield return KeyPairs[i];
-            }
-        }
-
-        public static IKeyPair AtIndex(int dex)
-        {
-            return KeyPairs[dex]; 
-        }
-
-        public static IKeyPair ForKeys(int lowKey, int highKey)
-        {
-            return AtIndex(KeyPairIndex(lowKey, highKey));
-        }
-
-        public static KeyPairSet KeyPairSet(int keyCount)
-        {
-            return KeyPairSets[keyCount] ?? (KeyPairSets[keyCount] = new KeyPairSet(keyCount));
-        }
-
-        public static int KeyPairSetSizeForKeyCount(int keyCount)
-        {
-            return (keyCount * (keyCount - 1)) / 2;
-        }
-
-        public static bool Overlaps(this IKeyPair lhs, IKeyPair rhs)
-        {
-            return (lhs.LowKey == rhs.LowKey)
-                   ||
-                   (lhs.LowKey == rhs.HiKey)
-                   ||
-                   (lhs.HiKey == rhs.LowKey)
-                   ||
-                   (lhs.HiKey == rhs.HiKey);
-        }
-
-        public static int MaxKeyCount { get { return 64; } }
-
-        class KeyPair : IKeyPair
-        {
-            public KeyPair(int index, int lowKey, int hiKey)
-            {
-                _index = index;
-                _lowKey = lowKey;
-                _hiKey = hiKey;
-            }
-
-            private readonly int _lowKey;
-            public int LowKey
-            {
-                get { return _lowKey; }
-            }
-
-            private readonly int _hiKey;
-            public int HiKey
-            {
-                get { return _hiKey; }
-            }
-
-            private readonly int _index;
-            public int Index
-            {
-                get { return _index; }
-            }
-        }
+        #endregion
     }
 
 }

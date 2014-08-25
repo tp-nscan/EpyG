@@ -104,7 +104,7 @@ namespace Sorting.SwitchFunctionSets
         {
             var returnValueType = string.Format("Tuple<{0}, bool>", SwitchableDataType.Name);
            
-            foreach (var keyPair in KeyPairRepository.KeyPairsForKeyCount(KeyCount).ToList())
+            foreach (var keyPair in KeyPairRepository.AllKeyPairsForKeyCount(KeyCount).ToList())
             {
                 var strInitializer = string.Format(
                     "new Func<{0}, {1}>(a => (a[{3}]{2}a[{4}]) ? new {1}({5}, true) : new {1}(a, false))",

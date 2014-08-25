@@ -61,8 +61,6 @@ namespace SorterGenome
 
         public static ISorter ToSorter(this IGenomeSorterOrbit genomeSorterOrbit)
         {
-            var randy = Rando.Fast(genomeSorterOrbit.GetHashCode());
-            const double mutationRate = 0.2;
 
             var permutations = genomeSorterOrbit.Sequence.ToPermutations(genomeSorterOrbit.KeyCount).ToList();
 
@@ -75,7 +73,10 @@ namespace SorterGenome
                                 .SelectMany(p => p.Values.Cast<uint>())
                                 .ToList();
 
-            return permutation.ToKeyPairs().ToSorter(genomeSorterOrbit.KeyCount);
+            return permutation
+                            .ToTuples()
+                            .ToKeyPairs(ignoreErrors:false)
+                            .ToSorter(genomeSorterOrbit.KeyCount);
         }
 
         //public static ISorter ToSorter(this IGenomeSorterOrbit genomeSorterOrbit)

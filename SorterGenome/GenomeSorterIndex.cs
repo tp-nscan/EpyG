@@ -17,7 +17,7 @@ namespace SorterGenome
     {
         public static ISorter ToSorter(this IGenomeSorterIndex genomeSorterIndex)
         {
-            return genomeSorterIndex.Sequence.Select(i => KeyPairRepository.AtIndex((int) i))
+            return genomeSorterIndex.Sequence
                                 .ToSorter(genomeSorterIndex.KeyCount);
         }
 

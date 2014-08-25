@@ -153,7 +153,7 @@ namespace Sorting.SwitchFunctionSets
         {
             var combo = new StringBuilder();
 
-            foreach (var keyPair in KeyPairRepository.KeyPairsForKeyCount(KeyCount))
+            foreach (var keyPair in KeyPairRepository.AllKeyPairsForKeyCount(KeyCount))
             {
                 combo.AppendLine(SwitchMaskDefinition(SwitchableDataType.Name, keyPair));
             }
@@ -168,7 +168,7 @@ namespace Sorting.SwitchFunctionSets
             combo.Clear();
 
             combo.AppendLine(String.Format("new Func<{0}, Tuple<{0}, bool>>[] {{", SwitchableDataType.Name));
-            foreach (var keyPair in KeyPairRepository.KeyPairsForKeyCount(KeyCount))
+            foreach (var keyPair in KeyPairRepository.AllKeyPairsForKeyCount(KeyCount))
             {
                 combo.AppendLine((keyPair.Index == 0) ? string.Empty : ",");
                 combo.AppendLine(SwitchExpression(SwitchableDataType.Name, keyPair));

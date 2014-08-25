@@ -147,8 +147,8 @@ namespace SorterGenome
                                    .Concat(dblChunk[8])
                                    .Concat(dblChunk[9])
                                    .Concat(dblChunk[10])
-                                   .ToArray()
-                            .ToKeyPairs().ToSorter(genomeSorterPermutation.Degree)
+                                   .ToTuples()
+                            .ToKeyPairs(ignoreErrors: false).ToSorter(genomeSorterPermutation.Degree)
                                              .Sort(convertedChunk)
                                              .Select(v => (uint)v)
                     );
@@ -163,8 +163,8 @@ namespace SorterGenome
                                    .Concat(dblChunk[8])
                                    .Concat(dblChunk[9])
                                    .Concat(dblChunk[10])
-                                   .ToArray()
-                            .ToKeyPairs().ToSorter(genomeSorterPermutation.Degree)
+                                   .ToTuples()
+                            .ToKeyPairs(ignoreErrors: false).ToSorter(genomeSorterPermutation.Degree)
                                             .Sort(convertedChunk)
                                             .Select(v => (uint)v)
                     );
@@ -178,8 +178,8 @@ namespace SorterGenome
                                    .Concat(dblChunk[8])
                                    .Concat(dblChunk[9])
                                    .Concat(dblChunk[10])
-                                   .ToArray()
-                            .ToKeyPairs().ToSorter(genomeSorterPermutation.Degree)
+                                   .ToTuples()
+                            .ToKeyPairs(ignoreErrors: false).ToSorter(genomeSorterPermutation.Degree)
                                             .Sort(convertedChunk)
                                             .Select(v => (uint)v)
                     );
@@ -193,8 +193,8 @@ namespace SorterGenome
                                    .Concat(dblChunk[8])
                                    .Concat(dblChunk[9])
                                    .Concat(dblChunk[10])
-                                   .ToArray()
-                            .ToKeyPairs().ToSorter(genomeSorterPermutation.Degree)
+                                   .ToTuples()
+                            .ToKeyPairs(ignoreErrors: false).ToSorter(genomeSorterPermutation.Degree)
                                             .Sort(convertedChunk)
                                             .Select(v => (uint)v)
                     );
@@ -208,14 +208,17 @@ namespace SorterGenome
                                    .Concat(dblChunk[8])
                                    .Concat(dblChunk[9])
                                    .Concat(dblChunk[10])
-                                   .ToArray()
-                            .ToKeyPairs().ToSorter(genomeSorterPermutation.Degree)
+                                   .ToTuples()
+                            .ToKeyPairs(ignoreErrors: false).ToSorter(genomeSorterPermutation.Degree)
                                             .Sort(convertedChunk)
                                             .Select(v => (uint)v)
                     );
             }
 
-            return convertedSequence.ToKeyPairs().ToSorter(genomeSorterPermutation.Degree);
+            return convertedSequence
+                                   .ToTuples()
+                                   .ToKeyPairs(ignoreErrors: false)
+                                   .ToSorter(genomeSorterPermutation.Degree);
         }
 
     }

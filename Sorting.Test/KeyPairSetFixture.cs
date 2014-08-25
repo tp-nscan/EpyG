@@ -13,7 +13,7 @@ namespace Sorting.Test
         {
             Assert.AreEqual
            (
-                KeyPairRepository.KeyPairsForKeyCount(KeyPairRepository.MaxKeyCount).Count(),
+                KeyPairRepository.AllKeyPairsForKeyCount(KeyPairRepository.MaxKeyCount).Count(),
                 KeyPairRepository.KeyPairSetSizeForKeyCount(KeyPairRepository.MaxKeyCount)
            );
         }
@@ -21,7 +21,7 @@ namespace Sorting.Test
         [TestMethod]
         public void TestKeyPairAssignment()
         {
-            foreach (var keyPair in KeyPairRepository.KeyPairsForKeyCount(KeyPairRepository.MaxKeyCount))
+            foreach (var keyPair in KeyPairRepository.AllKeyPairsForKeyCount(KeyPairRepository.MaxKeyCount))
             {
                 Assert.AreEqual
                     (

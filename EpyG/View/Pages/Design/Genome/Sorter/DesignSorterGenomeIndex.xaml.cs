@@ -40,6 +40,7 @@ namespace EpyG.View.Pages.Design.Genome.Sorter
         public void OnImportsSatisfied()
         {
             DataContext = DesignSorterGenomeVm;
+            DesignSorterGenomeVm.KeyCount = 16;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Sorting.Test.Stages
             const int keyPairCount = 160;
             var stage = ImmutableList<IKeyPair>.Empty.AddRange
                 (
-                   Rando.Fast(123).RandomKeyPairs
+                   Rando.Fast(123).ToKeyPairs
                     (
                         keyCount: keyCount
                     ).Take(keyPairCount)
@@ -63,7 +63,7 @@ namespace Sorting.Test.Stages
             const int keyPairCount = 160;
             var stage = ImmutableList<IKeyPair>.Empty.AddRange
                 (
-                    Rando.Fast(123).RandomKeyPairs
+                    Rando.Fast(123).ToKeyPairs
                     (
                         keyCount: keyCount
                     ).Take(keyPairCount)
@@ -74,7 +74,7 @@ namespace Sorting.Test.Stages
 
         public static IEnumerable<IKeyPair> SingleKeyPair
         {
-            get { yield return KeyPairRepository.ForKeys(0, 1); }
+            get { yield return KeyPairRepository.KeyPairFromKeys(0, 1); }
         }
 
     }

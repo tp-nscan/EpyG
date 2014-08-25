@@ -117,6 +117,29 @@ namespace MathUtils.Collections
             }
         }
 
+        public static IEnumerable<Tuple<T, T>> ToTuples<T>(this IEnumerable<T> items)
+        {
+            var keyEnumerator = items.GetEnumerator();
+            while (true)
+            {
+                if (!keyEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                var valA = keyEnumerator.Current;
+
+                if (!keyEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                var valB = keyEnumerator.Current;
+
+                yield return new Tuple<T, T>(valA, valB);
+            }
+        }
+
         public static IEnumerable<IReadOnlyList<T>> Slice<T>(this IEnumerable<T> enumerT, int chunkSize)
         {
             var retChunk = new List<T>();

@@ -14,21 +14,7 @@ namespace Sorting.Json.Test.Sorters
         [TestMethod]
         public void ConvertSorterTest()
         {
-            const int keyCount = 16;
-            const int sequenceLength = 100;
-            var keyPairSet = KeyPairRepository.KeyPairSet(keyCount);
 
-            var keyPairs = Enumerable.Range(0, sequenceLength)
-                                     .Select(i=>keyPairSet[i])
-                                     .ToArray();
-
-            var sorter = keyPairs.ToSorter(keyCount: keyCount);
-
-            var serialized = JsonConvert.SerializeObject(sorter.ToJsonAdapter(), Formatting.Indented);
-            var newSorter = serialized.ToSorter();
-
-            Assert.AreEqual(newSorter.KeyCount, keyCount);
-            Assert.IsTrue(newSorter.KeyPairs.IsSameAs(keyPairs));
         }
     }
 }
