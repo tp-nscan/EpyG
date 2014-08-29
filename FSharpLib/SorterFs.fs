@@ -60,16 +60,6 @@ module SwitchFunctions =
 
 module BitonicFunctions = 
 
-    let func1 x = x*x + 3     
-
-
-    let rec Multiple x =
-        if x = 1000 then 0
-        elif x%3 = 0 || x%5 = 0 then x + Multiple (x+1)
-        else Multiple (x+1)
-
-
-
     let BitonicSwitchCount logKeyCount =
         let rec Bct  lv =
             match lv with

@@ -75,7 +75,7 @@ namespace MathUtils.Tests.Collections
             var convUlongs = startUints.ToUlongs().ToList();
             var endUints = convUlongs.ToUints().ToList();
 
-            var diffs = startUints.GetDiffs(endUints).ToList();
+            var diffs = startUints.GetDiffs(endUints, (a, b) => a == b).ToList();
             Assert.AreEqual(diffs.Count, 0);
         }
 
@@ -88,7 +88,7 @@ namespace MathUtils.Tests.Collections
             var convUints = startUlongs.ToUints().ToList();
             var endUlongs = convUints.ToUlongs().ToList();
 
-            var diffs = startUlongs.GetDiffs(endUlongs).ToList();
+            var diffs = startUlongs.GetDiffs(endUlongs, (a,b) => a == b).ToList();
             Assert.AreEqual(diffs.Count, 0);
         }
 

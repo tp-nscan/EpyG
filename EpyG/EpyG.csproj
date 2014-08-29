@@ -40,6 +40,19 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -64,12 +77,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\Pages\Design\DesignCompPoolVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\DesignGenomeVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\DesignSorterGenomeTypeVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\DesignSorterGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeTypeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeIndexVm.cs" />
     <Compile Include="ViewModel\Pages\Design\DesignSwitchableGroupGenomeVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\Genome\DesignSorterGenomeSpecIndexVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\Genome\DesignSorterGenomeSpecPermutationVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecIndexVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecPermutationVm.cs" />
     <Compile Include="ViewModel\Pages\Test\EvolveCompPoolVm.cs" />
     <Compile Include="ViewModel\Pages\Test\PoolEnsemblesVm.cs" />
     <Compile Include="ViewModel\Pages\Gallery\GalleryCompPoolsVm.cs" />
@@ -87,8 +101,8 @@
     <Compile Include="View\Pages\Design\Genome\DesignGenome.xaml.cs">
       <DependentUpon>DesignGenome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenome.xaml.cs">
-      <DependentUpon>DesignSorterGenome.xaml</DependentUpon>
+    <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpec.xaml.cs">
+      <DependentUpon>DesignSorterGenomeSpec.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeIndex.xaml.cs">
       <DependentUpon>DesignSorterGenomeIndex.xaml</DependentUpon>
@@ -168,7 +182,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenome.xaml">
+    <Page Include="View\Pages\Design\Genome\Sorter\DesignSorterGenomeSpec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -302,6 +316,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -342,7 +357,9 @@
       <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\Pages\Design\Genome\SwitchableGroup\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

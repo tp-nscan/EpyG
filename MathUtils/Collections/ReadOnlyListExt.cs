@@ -56,11 +56,15 @@ namespace MathUtils.Collections
             return lhs;
         }
 
-        public static IEnumerable<Tuple<int, T, T>> GetDiffs<T>(this IReadOnlyList<T> listA, IReadOnlyList<T> listB)
+        public static IEnumerable<Tuple<int, T, T>> GetDiffs<T>(
+                this IReadOnlyList<T> listA, 
+                IReadOnlyList<T> listB,
+                Func<T,T,bool> comparitor
+            )
         {
             for (var i = 0; i < listA.Count; i++)
             {
-                if (! listA[i].Equals(listB[i]))
+                if (! comparitor(listA[i], listB[i]))
                 {
                     yield return new Tuple<int, T, T>(i, listA[i], listB[i]);
                 }

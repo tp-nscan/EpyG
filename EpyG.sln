@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharpLib.Test", "FSharpLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterControls", "SorterControls\SorterControls.csproj", "{0D0AD96F-FFA4-4508-A3D2-50A84E64F457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorterGenome.Json", "SorterGenome.Json\SorterGenome.Json.csproj", "{C07060EB-95C2-4C34-A54C-CF6896983677}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{0D0AD96F-FFA4-4508-A3D2-50A84E64F457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D0AD96F-FFA4-4508-A3D2-50A84E64F457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D0AD96F-FFA4-4508-A3D2-50A84E64F457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07060EB-95C2-4C34-A54C-CF6896983677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07060EB-95C2-4C34-A54C-CF6896983677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07060EB-95C2-4C34-A54C-CF6896983677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07060EB-95C2-4C34-A54C-CF6896983677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

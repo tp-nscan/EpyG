@@ -1,5 +1,6 @@
 ﻿using CommonUI;
 using EpyG.ViewModel.Pages.Design.Genome;
+using EpyG.ViewModel.Pages.Design.Genome.Sorter;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 

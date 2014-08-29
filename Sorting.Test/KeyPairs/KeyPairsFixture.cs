@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using MathUtils.Collections;
 using MathUtils.Rand;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sorting.KeyPairs;
@@ -31,19 +32,19 @@ namespace Sorting.Test.KeyPairs
         [TestMethod]
         public void TestKeyPairSerialization()
         {
-            const int keyCount = 64;
-            const int stageCount = 5;
+            const int keyCount = 16;
+            const int keyPairCount = 5;
 
-            var keyPairs = Rando.Fast(1111).RandomFullStages(keyCount)
-                                      .Take(stageCount)
-                                      .SelectMany(s => s)
-                                      .ToList();
+            var keyPairs = Rando.Fast(1111)
+                                .ToKeyPairs(keyCount)
+                                .Take(keyPairCount)
+                                .ToList();
 
-            var stages = keyPairs.ToSorterStages(keyCount)
-                            .ToList();
+            var serialized = keyPairs.ToSerialized();
 
-            Assert.AreEqual(stageCount, stages.Count());
-            Assert.AreEqual(stages.SelectMany(s => s.KeyPairs).Count(), keyPairs.Count());
+            var deserialzied = serialized.ToKeyPairs().ToList();
+
+            Assert.AreEqual(keyPairs.GetDiffs(deserialzied, (a,b) => a.Index == b.Index).Count(), 0);
         }
 
 

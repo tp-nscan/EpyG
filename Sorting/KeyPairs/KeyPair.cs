@@ -6,7 +6,6 @@ namespace Sorting.KeyPairs
 {
     public static class KeyPair
     {
-
         public static bool Overlaps(this IKeyPair lhs, IKeyPair rhs)
         {
             return (lhs.LowKey == rhs.LowKey)
@@ -20,12 +19,12 @@ namespace Sorting.KeyPairs
 
         #region serialization
 
-        public static string ToString(this IEnumerable<IKeyPair> keyPairs)
+        public static string ToSerialized(this IEnumerable<IKeyPair> keyPairs)
         {
-            return keyPairs.Aggregate(string.Empty, (acc, kp) => kp.ToString() + "; ");
+            return keyPairs.Aggregate(string.Empty, (acc, kp) => acc + kp.ToSerialized() + "; ");
         }
 
-        public static string ToString(this IKeyPair keyPair)
+        public static string ToSerialized(this IKeyPair keyPair)
         {
             return keyPair.Index.ToString();
         }
@@ -44,9 +43,9 @@ namespace Sorting.KeyPairs
 
         public static IReadOnlyList<IKeyPair> ToKeyPairs(this string sequence)
         {
-            return sequence.Split(";".ToCharArray())
-                            .Select(kstr => kstr.ToKeyPair())
-                            .ToList();
+            var pcs = sequence.Trim().Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            return pcs.Select(kstr => kstr.ToKeyPair())
+                      .ToList();
         }
 
         #endregion

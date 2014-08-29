@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using CommonUI;
-using EpyG.ViewModel.Pages.Design;
+using EpyG.ViewModel.Pages.Design.Genome.Sorter;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
+using SorterControls.ViewModel.Genome;
 
 namespace EpyG.View.Pages.Design.Genome.Sorter
 {
@@ -15,7 +16,10 @@ namespace EpyG.View.Pages.Design.Genome.Sorter
         }
 
         [Import]
-        DesignSorterGenomeVm DesignSorterGenomeVm { get; set; }
+        DesignSorterGenomeIndexVm DesignSorterGenomeIndexVm { get; set; }
+
+        [Import]
+        public DesignSorterGenomeSpecIndexVm DesignSorterGenomeSpecIndexVm { get; set; }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
@@ -24,23 +28,26 @@ namespace EpyG.View.Pages.Design.Genome.Sorter
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-
+            var s = "S";
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            DesignSorterGenomeIndexVm.GenomeEditorVm 
+                = new GenomeEditorSwitchIndexVm(
+                    keyCount: DesignSorterGenomeSpecIndexVm.SuggestedKeyParam.KeyCount, 
+                    keyPairs: DesignSorterGenomeSpecIndexVm.KeyPairs);
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            var s = "S";
 
         }
 
         public void OnImportsSatisfied()
         {
-            DataContext = DesignSorterGenomeVm;
-            DesignSorterGenomeVm.KeyCount = 16;
+            DataContext = DesignSorterGenomeIndexVm;
         }
     }
 }
