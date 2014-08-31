@@ -1,4 +1,4 @@
-﻿namespace SorterControls.ViewModel.Sorter
+﻿namespace SorterControls.ViewModel.SorterOld
 {
     public enum SorterVmType
     {

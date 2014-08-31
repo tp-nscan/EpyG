@@ -6,7 +6,7 @@ using System.Windows.Media;
 using Sorting.Evals;
 using Sorting.Stages;
 
-namespace SorterControls.ViewModel.Sorter
+namespace SorterControls.ViewModel.SorterOld
 {
     public interface ISorterEvalVm : ISorterVm
     {
@@ -65,7 +65,7 @@ namespace SorterControls.ViewModel.Sorter
                         SorterEval.SwitchableGroupCount
                     );
 
-                SwitchVms.Add(new SwitchVm(keyPair, SorterEval.KeyCount, LineBrushes, Width)
+                SwitchVms.Add(new SwitchGraphicVm(keyPair, SorterEval.KeyCount, LineBrushes, Width)
                 {
                     SwitchBrush = SwitchBrushes[(int)switchBrushIndex]
                 });
@@ -104,7 +104,7 @@ namespace SorterControls.ViewModel.Sorter
                         SorterEval.SwitchableGroupCount
                     );
 
-                SwitchVms.Add(new SwitchVm(stagedKeyPair, SorterEval.KeyCount, LineBrushes, Width)
+                SwitchVms.Add(new SwitchGraphicVm(stagedKeyPair, SorterEval.KeyCount, LineBrushes, Width)
                 {
                     SwitchBrush = SwitchBrushes[(int)switchBrushIndex]
                 });
@@ -166,8 +166,8 @@ namespace SorterControls.ViewModel.Sorter
             get { return _sorterEval; }
         }
 
-        private ObservableCollection<SwitchVm> _switchVms = new ObservableCollection<SwitchVm>();
-        public ObservableCollection<SwitchVm> SwitchVms
+        private ObservableCollection<SwitchGraphicVm> _switchVms = new ObservableCollection<SwitchGraphicVm>();
+        public ObservableCollection<SwitchGraphicVm> SwitchVms
         {
             get { return _switchVms; }
             set { _switchVms = value; }

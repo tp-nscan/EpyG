@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SorterControls.View.Sorter
+namespace SorterControls.View.Common
 {
     /// <summary>
-    /// Interaction logic for SorterControl.xaml
+    /// Interaction logic for BrushLegendControl.xaml
     /// </summary>
-    public partial class SorterControl : UserControl
+    public partial class BrushLegendControl : UserControl
     {
-        public SorterControl()
+        public BrushLegendControl()
         {
             InitializeComponent();
         }

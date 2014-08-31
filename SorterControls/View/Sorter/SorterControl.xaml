@@ -3,17 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sorter="clr-namespace:SorterControls.View.Sorter"
+             xmlns:sorter1="clr-namespace:SorterControls.DesignVms.Sorter"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance design:DesignStagedSorterVm, IsDesignTimeCreatable=True}"
-             x:Name="ControlRoot"
-             d:DesignHeight="200">
+             d:DataContext="{d:DesignInstance sorter1:DesignSorterVm, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="500">
+    
+    <Grid>
+        
+        <!--<sorter:StageControl
+            Height="200"
+            StageVm="{Binding Mode=OneWay}"
+            />-->
+        <Border CornerRadius="8" BorderBrush="#400F" BorderThickness="1" Background="#F000">
+            <Border Margin="1" CornerRadius="8" BorderThickness="1" BorderBrush="#F000">
+                <ItemsControl ItemsSource="{Binding StageVms}" ItemTemplate="{DynamicResource StageTemplate}">
 
+                    <ItemsControl.Resources>
+                        <DataTemplate x:Key="StageTemplate">
+                            <sorter:StageControl
+                                    Height="250"
+                                Margin="-1,0"
+                                    StageVm="{Binding Mode=OneWay}"
+                                    />
+                        </DataTemplate>
+                    </ItemsControl.Resources>
 
-    <ContentControl
-        Content="{Binding}"
-        ContentTemplateSelector="{DynamicResource SorterSelector}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-    </ContentControl>
+                </ItemsControl>
+            </Border>
+        </Border>
 
-
+    </Grid>
+    
 </UserControl>

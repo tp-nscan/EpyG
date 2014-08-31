@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using MathUtils.Rand;
 
-namespace SorterControls.View.Sorter
+namespace SorterControls.View.SorterOld
 {
     public static class LineBrushFactory
     {

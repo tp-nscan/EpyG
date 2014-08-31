@@ -1,7 +1,8 @@
-﻿using SorterControls.View.Sorter;
+﻿using SorterControls.View.SorterOld;
+using SorterControls.ViewModel.SorterOld;
 using Sorting.TestData;
 
-namespace SorterControls.ViewModel.Sorter.Design
+namespace SorterControls.DesignVms.SorterOld
 {
     public class DesignSorterVm : SorterVmImpl
     {

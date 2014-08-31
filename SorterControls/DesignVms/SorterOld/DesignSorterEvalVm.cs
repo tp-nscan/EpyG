@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using SorterControls.View.Sorter;
+using SorterControls.View.SorterOld;
+using SorterControls.ViewModel.SorterOld;
 using Sorting.Evals;
 using Sorting.TestData;
 
-namespace SorterControls.ViewModel.Sorter.Design
+namespace SorterControls.DesignVms.SorterOld
 {
     public class DesignSorterEvalVm : SorterEvalVm
     {

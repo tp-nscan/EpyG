@@ -2,7 +2,7 @@
 
 namespace SorterControls.DesignVms.Genome
 {
-    public class DesignSwitchEditVm : SwitchEditVm
+    public class DesignSwitchEditVm : SwitchEditorVm
     {
         public DesignSwitchEditVm() : base(16)
         {

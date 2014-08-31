@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Sorting.KeyPairs;
 
-namespace SorterControls.View.Sorter
+namespace SorterControls.View.SorterOld
 {
     public class SwitchVisual : Canvas
     {
@@ -235,7 +235,7 @@ namespace SorterControls.View.Sorter
 
         #region LineBrushes
 
-        private static readonly List<Brush> DefaultLineBrushes = new List<Brush>();
+        private static readonly List<Brush> defaultLineBrushes = new List<Brush>();
 
         [Category("Custom Properties")]
         public List<Brush> LineBrushes
@@ -246,7 +246,7 @@ namespace SorterControls.View.Sorter
 
         public static readonly DependencyProperty LineBrushesProperty =
             DependencyProperty.Register("LineBrushes", typeof(List<Brush>), typeof(SwitchVisual),
-            new FrameworkPropertyMetadata(DefaultLineBrushes, FrameworkPropertyMetadataOptions.AffectsRender, OnLineBrushesChanged));
+            new FrameworkPropertyMetadata(defaultLineBrushes, FrameworkPropertyMetadataOptions.AffectsRender, OnLineBrushesChanged));
 
         private static void OnLineBrushesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -356,8 +356,8 @@ namespace SorterControls.View.Sorter
             if (switchVisual.KeyCount == DefaultKeyCount) return false;
             if (switchVisual.KeyPair == null) return false;
             if (switchVisual.LineBrushes.Count == 0) return false;
-            if (switchVisual.SwitchThickness == 0) return false;
-            if (switchVisual.LineThickness == 0) return false;
+            if (switchVisual.SwitchThickness < 0.001) return false;
+            if (switchVisual.LineThickness < 0.001) return false;
             if (switchVisual.SwitchBrush == null) return false;
             return true;
         }

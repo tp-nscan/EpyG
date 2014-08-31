@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.Composition;
-using CommonUI;
-using EpyG.ViewModel.Pages.Design;
-using EpyG.ViewModel.Pages.Design.Genome.Sorter;
+﻿using CommonUI;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
+using SorterControls.DesignVms.Sorter;
 
 namespace EpyG.View.Pages.Design.Genome
 {
@@ -16,6 +14,7 @@ namespace EpyG.View.Pages.Design.Genome
         public DesignGenome()
         {
             InitializeComponent();
+            DataContext = new DesignStageVm();
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)

@@ -6,7 +6,7 @@ using FirstFloor.ModernUI.Presentation;
 using Sorting.Evals;
 using Sorting.Stages;
 
-namespace SorterControls.ViewModel.Sorter
+namespace SorterControls.ViewModel.SorterOld
 {
     public class SorterStageVm : NotifyPropertyChanged
     {
@@ -42,7 +42,7 @@ namespace SorterControls.ViewModel.Sorter
                         SwitchableGroupCount
                     );
 
-                SwitchVms.Add(new SwitchVm(keyPair, SorterStage.KeyCount, LineBrushes, Width)
+                SwitchVms.Add(new SwitchGraphicVm(keyPair, SorterStage.KeyCount, LineBrushes, Width)
                 {
                     SwitchBrush = SwitchBrushes[(int)switchBrushIndex]
                 });
@@ -56,8 +56,8 @@ namespace SorterControls.ViewModel.Sorter
             get { return _sorterStage; }
         }
 
-        private ObservableCollection<SwitchVm> _switchVms = new ObservableCollection<SwitchVm>();
-        public ObservableCollection<SwitchVm> SwitchVms
+        private ObservableCollection<SwitchGraphicVm> _switchVms = new ObservableCollection<SwitchGraphicVm>();
+        public ObservableCollection<SwitchGraphicVm> SwitchVms
         {
             get { return _switchVms; }
             set { _switchVms = value; }

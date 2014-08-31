@@ -1,88 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media;
-using FirstFloor.ModernUI.Presentation;
-using Sorting.Evals;
-using Sorting.Sorters;
+using Sorting.KeyPairs;
 
 namespace SorterControls.ViewModel.Sorter
 {
     public interface ISorterVm
     {
-        SorterVmType SorterVmType { get; }
+        int KeyCount { get; }
+        IReadOnlyList<StageVm> StageVms { get; }
     }
 
     public static class SorterVm
     {
-        public static ISorterVm ToSorterVm
+        public const int _keyCount = 8;
+        private const double _switchWidth = 0.3;
+        private const double _lineThickness = 0.07;
+        private static readonly Brush _lineBrush = new SolidColorBrush(Colors.Black);
+        private static readonly Brush _backgroundBrush = new SolidColorBrush(Colors.WhiteSmoke);
+
+        public static ISorterVm Make
             (
-                this ISorterEval sorterEval,
-                List<Brush> lineBrushes,
-                int width
+                int keyCount,
+                IReadOnlyList<StageVm> stageVms
             )
         {
             return new SorterVmImpl
                 (
-                    sorter: sorterEval,
-                    lineBrushes: lineBrushes,
-                    width: width
+                    keyCount: keyCount,
+                    stageVms: stageVms
                 );
         }
+
+        //public static ISorterVm MakeUnstaged
+        //    (
+        //        int keyCount,
+        //        IReadOnlyList<IKeyPair> keyPairs
+        //    )
+        //{
+        //    return new SorterVmImpl
+        //        (
+        //            keyCount: keyCount,
+        //            stageVms: keyPairs.Select(
+
+        //                    kp => new KeyPairVm()
+        //                    {
+        //                        KeyPair = KeyPairRepository.KeyPairFromKeys(0, 1),
+        //                        Position = 0,
+        //                        SwitchBrush = new SolidColorBrush(Colors.Olive)
+        //                    }
+
+
+        //                ).ToList()
+        //        );
+
+
+        //}
     }
 
-    public class SorterVmImpl : NotifyPropertyChanged, ISorterVm
+
+    public class SorterVmImpl : ISorterVm
     {
         public SorterVmImpl
             (
-                ISorterEval sorter,
-                List<Brush> lineBrushes,
-                int width
+                int keyCount, 
+                IReadOnlyList<StageVm> stageVms
             )
         {
-            _sorter = sorter;
-            foreach (var keyPair in Sorter.KeyPairs)
-            {
-                SwitchVms.Add
-                    (
-                        new SwitchVm
-                        (
-                            keyPair: keyPair,
-                            keyCount: sorter.KeyCount,
-                            lineBrushes: lineBrushes,
-                            width: width
-                        ) 
-                        { SwitchBrush = Brushes.Red} 
-                    );
-            }
+            _keyCount = keyCount;
+            _stageVms = stageVms;
         }
 
-        private readonly ISorter _sorter;
-        ISorter Sorter
-        {
-            get { return _sorter; }
-        }
-
+        private readonly int _keyCount;
         public int KeyCount
         {
-            get { return Sorter.KeyCount; }
+            get { return _keyCount; }
         }
 
-        private ObservableCollection<SwitchVm> _switchVms = new ObservableCollection<SwitchVm>();
-        public ObservableCollection<SwitchVm> SwitchVms
+        private readonly IReadOnlyList<StageVm> _stageVms;
+        public IReadOnlyList<StageVm> StageVms
         {
-            get { return _switchVms; }
-            set { _switchVms = value; }
-        }
-
-        public string StringValue
-        {
-            get { return String.Empty; }
-        }
-
-        public SorterVmType SorterVmType
-        {
-            get { return SorterVmType.Unstaged; }
+            get { return _stageVms; }
         }
     }
 }

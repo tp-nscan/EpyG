@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SorterControls.View.Sorter
+namespace SorterControls.View.SorterOld
 {
     /// <summary>
     /// Interaction logic for StagedSorterControl.xaml

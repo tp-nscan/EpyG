@@ -17,7 +17,7 @@ namespace SorterControls.ViewModel.Genome
 
             for (var i = 0; i < keyPairs.Count; i++)
             {
-                var switchEditVm = new SwitchEditVm(KeyCount)
+                var switchEditVm = new SwitchEditorVm(KeyCount)
                 {
                     SorterPosition = i,
                     LowKey = keyPairs[i].LowKey,
@@ -41,7 +41,7 @@ namespace SorterControls.ViewModel.Genome
                 .ToSerialized();
         }
 
-        public void AddSwitchEditVm(SwitchEditVm switchEditVm, int sorterPosition)
+        public void AddSwitchEditVm(SwitchEditorVm switchEditVm, int sorterPosition)
         {
             _updateSuscriptions[switchEditVm] 
                 = switchEditVm.OnSwitchEditVmChanged.Subscribe(vm => Serialize());
@@ -53,7 +53,7 @@ namespace SorterControls.ViewModel.Genome
             //Serialize();
         }
 
-        public void RemoveSwitchEditVm(SwitchEditVm switchEditVm)
+        public void RemoveSwitchEditVm(SwitchEditorVm switchEditVm)
         {
             _updateSuscriptions[switchEditVm].Dispose();
             _updateSuscriptions.Remove(switchEditVm);
@@ -73,8 +73,8 @@ namespace SorterControls.ViewModel.Genome
             }
         }
 
-        readonly Dictionary<SwitchEditVm, IDisposable> _updateSuscriptions 
-            = new Dictionary<SwitchEditVm, IDisposable>(); 
+        readonly Dictionary<SwitchEditorVm, IDisposable> _updateSuscriptions 
+            = new Dictionary<SwitchEditorVm, IDisposable>(); 
 
         private readonly int _keyCount;
         public int KeyCount
@@ -82,10 +82,10 @@ namespace SorterControls.ViewModel.Genome
             get { return _keyCount; }
         }
 
-        private ObservableCollection<SwitchEditVm> _switchEditVms 
-            = new ObservableCollection<SwitchEditVm>();
+        private ObservableCollection<SwitchEditorVm> _switchEditVms 
+            = new ObservableCollection<SwitchEditorVm>();
 
-        public ObservableCollection<SwitchEditVm> SwitchEditVms
+        public ObservableCollection<SwitchEditorVm> SwitchEditVms
         {
             get { return _switchEditVms; }
             set { _switchEditVms = value; }
@@ -137,11 +137,11 @@ namespace SorterControls.ViewModel.Genome
 
         protected void OnInsertCommand(object param)
         {
-            var vm = param as SwitchEditVm;
+            var vm = param as SwitchEditorVm;
 
             if (vm == null) { return;}
 
-            AddSwitchEditVm( new SwitchEditVm(KeyCount), vm.SorterPosition);
+            AddSwitchEditVm( new SwitchEditorVm(KeyCount), vm.SorterPosition);
         }
 
         void ReIndex()
@@ -178,7 +178,7 @@ namespace SorterControls.ViewModel.Genome
 
         protected void OnDeleteCommand(object param)
         {
-            var vm = param as SwitchEditVm;
+            var vm = param as SwitchEditorVm;
 
             if (vm == null) { return; }
 

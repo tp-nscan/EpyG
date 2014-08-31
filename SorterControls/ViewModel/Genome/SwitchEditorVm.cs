@@ -5,17 +5,17 @@ using FirstFloor.ModernUI.Presentation;
 
 namespace SorterControls.ViewModel.Genome
 {
-    public class SwitchEditVm : NotifyPropertyChanged, 
+    public class SwitchEditorVm : NotifyPropertyChanged, 
             IDataErrorInfo
     {
-        public SwitchEditVm(int keyCount)
+        public SwitchEditorVm(int keyCount)
         {
             _keyCount = keyCount;
         }
 
-        private readonly Subject<SwitchEditVm> _onSwitchEditVmChanged 
-            = new Subject<SwitchEditVm>();
-        public IObservable<SwitchEditVm> OnSwitchEditVmChanged
+        private readonly Subject<SwitchEditorVm> _onSwitchEditVmChanged 
+            = new Subject<SwitchEditorVm>();
+        public IObservable<SwitchEditorVm> OnSwitchEditVmChanged
         {
             get { return _onSwitchEditVmChanged; }
         }

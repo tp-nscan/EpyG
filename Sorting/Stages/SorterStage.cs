@@ -15,7 +15,11 @@ namespace Sorting.Stages
 
     public static class SorterStage
     {
-        public static ISorterStage<T> ToSorterStage<T>(this IEnumerable<T> keyPairs, int keyCount)
+        public static ISorterStage<T> ToSorterStage<T>
+            (
+                this IEnumerable<T> keyPairs, 
+                int keyCount
+            )
             where T : IKeyPair
         {
             return new SorterStageImpl<T>(keyCount, keyPairs.OrderBy(kp => kp.Index).ToList());

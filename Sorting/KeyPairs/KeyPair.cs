@@ -4,9 +4,16 @@ using System.Linq;
 
 namespace Sorting.KeyPairs
 {
+    public interface IKeyPair
+    {
+        int LowKey { get; }
+        int HiKey { get; }
+        int Index { get; }
+    }
+
     public static class KeyPair
     {
-        public static bool Overlaps(this IKeyPair lhs, IKeyPair rhs)
+        public static bool EndpointsOverlap(this IKeyPair lhs, IKeyPair rhs)
         {
             return (lhs.LowKey == rhs.LowKey)
                    ||
@@ -16,6 +23,24 @@ namespace Sorting.KeyPairs
                    ||
                    (lhs.HiKey == rhs.HiKey);
         }
+
+
+        public static bool SpanOverlaps(this IKeyPair lhs, IKeyPair rhs)
+        {
+            if (lhs.LowKey > rhs.HiKey)
+            {
+                return false;
+            }
+
+            if (lhs.HiKey < rhs.LowKey)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
 
         #region serialization
 

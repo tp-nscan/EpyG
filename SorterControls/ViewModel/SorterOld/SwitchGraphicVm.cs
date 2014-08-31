@@ -3,11 +3,11 @@ using System.Windows.Media;
 using FirstFloor.ModernUI.Presentation;
 using Sorting.KeyPairs;
 
-namespace SorterControls.ViewModel.Sorter
+namespace SorterControls.ViewModel.SorterOld
 {
-    public class SwitchVm : NotifyPropertyChanged
+    public class SwitchGraphicVm : NotifyPropertyChanged
     {
-        public SwitchVm
+        public SwitchGraphicVm
         (
             IKeyPair keyPair, 
             int keyCount, 

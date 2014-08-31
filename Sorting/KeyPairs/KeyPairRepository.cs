@@ -7,13 +7,6 @@ using Roslyn.Compilers.CSharp;
 
 namespace Sorting.KeyPairs
 {
-    public interface IKeyPair
-    {
-        int LowKey { get; }
-        int HiKey { get; }
-        int Index { get; }
-    }
-
     public static class KeyPairRepository
     {
 

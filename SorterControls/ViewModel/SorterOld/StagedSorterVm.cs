@@ -5,7 +5,7 @@ using FirstFloor.ModernUI.Presentation;
 using Sorting.Evals;
 using Sorting.Stages;
 
-namespace SorterControls.ViewModel.Sorter
+namespace SorterControls.ViewModel.SorterOld
 {
     public static class StagedSorterVm
     {
