@@ -9,6 +9,26 @@ namespace SorterControls.View.Sorter
 {
     public class StageControl : Control
     {
+        public StageControl()
+        {
+            SizeChanged += StageControl_SizeChanged;    
+        }
+
+        void StageControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _stageWidth = null;
+            _switchidth = null;
+            _lineThickness = null;
+            _ballRadius = null;
+            _keyHeight = null;
+            _stageWidth = null;
+            _stageWidth = null;
+            _stageWidth = null;
+
+            Width = StageWidth.Value;
+            InvalidateVisual();
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
             if (StageVm == null)
@@ -27,8 +47,8 @@ namespace SorterControls.View.Sorter
             foreach (var keyPairVm in StageVm.KeyPairVms)
             {
                 var pL = new Pen(keyPairVm.SwitchBrush, LineThickness.Value);
-                dc.DrawLine(pL, SwitchBottom( keyPairVm.KeyPair.HiKey, keyPairVm.Position),
-                                SwitchTop( keyPairVm.KeyPair.LowKey, keyPairVm.Position));
+                dc.DrawLine(pL, SwitchBottom(keyPairVm.KeyPair.HiKey, keyPairVm.Position),
+                                SwitchTop(keyPairVm.KeyPair.LowKey, keyPairVm.Position));
 
                 dc.DrawEllipse(keyPairVm.SwitchBrush, null, SwitchBottom(keyPairVm.KeyPair.HiKey, keyPairVm.Position), BallRadius.Value, BallRadius.Value);
 
@@ -90,14 +110,14 @@ namespace SorterControls.View.Sorter
             }
         }
 
-        private double? _keySpan;
+        private double? _keyHeight;
         double? KeyHeight
         {
             get
             {
-                return _keySpan ??
+                return _keyHeight ??
                     (
-                        _keySpan = Height / StageVm.KeyCount
+                        _keyHeight = Height / StageVm.KeyCount
                     );
             }
         }
@@ -123,14 +143,14 @@ namespace SorterControls.View.Sorter
         #region StageVm
 
         [Category("Custom Properties")]
-        public StageVm StageVm
+        public IStageVm StageVm
         {
-            get { return (StageVm)GetValue(StageVmProperty); }
+            get { return (IStageVm)GetValue(StageVmProperty); }
             set { SetValue(StageVmProperty, value); }
         }
 
         public static readonly DependencyProperty StageVmProperty =
-            DependencyProperty.Register("StageVm", typeof(StageVm), typeof(StageControl),
+            DependencyProperty.Register("StageVm", typeof(IStageVm), typeof(StageControl),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender, OnStageVmPropertyChanged));
 
         private static void OnStageVmPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

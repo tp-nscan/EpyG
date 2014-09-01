@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using FirstFloor.ModernUI.Presentation;
 using SorterControls.ViewModel.Genome;
+using SorterControls.ViewModel.Sorter;
 
 namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 {
@@ -24,6 +25,18 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
         protected virtual void ProcessGenome(ISorterGenomeEditorVm sorterGenomeEditorVm)
         {
             SerializedGenome = sorterGenomeEditorVm.Serialized;
+        }
+
+
+        private ISorterVm _sorterVm;
+        public ISorterVm SorterVm
+        {
+            get { return _sorterVm; }
+            set
+            {
+                _sorterVm = value;
+                OnPropertyChanged("SorterVm");
+            }
         }
 
         private string _serializedGenome;

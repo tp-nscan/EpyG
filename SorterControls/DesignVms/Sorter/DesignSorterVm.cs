@@ -8,17 +8,17 @@ namespace SorterControls.DesignVms.Sorter
     public class DesignSorterVm : SorterVmImpl
     {
         public DesignSorterVm()
-            : base(DesignStageVm._keyCount, StageVms.ToList())
+            : base(DesignStageVm._keyCount, _StageVms.ToList())
         {
         }
 
-        static IEnumerable<StageVm> StageVms
+        static IEnumerable<IStageVm> _StageVms
         {
             get
             {
                 yield return new DesignStageVm();
 
-                yield return new StageVm(
+                yield return new StageVmImpl(
                         keyCount: _keyCount,
                         keyPairVms: DesignStageVm.KeyPairVms.ToList(),
                         switchWidth: _switchWidth,
@@ -29,7 +29,7 @@ namespace SorterControls.DesignVms.Sorter
 
                 yield return new DesignStageVm();
 
-                yield return new StageVm(
+                yield return new StageVmImpl(
                         keyCount: _keyCount,
                         keyPairVms: DesignStageVm.KeyPairVms.ToList(),
                         switchWidth: _switchWidth,

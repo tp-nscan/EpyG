@@ -14,7 +14,7 @@
             <mui:BBCodeBlock BBCode=" [url=/View/Pages/Design/Genome/SwitchableGroup/DesignSwitchableGroupGenome.xaml]Create a switchable group genome[/url]" Style="{StaticResource Heading2}"  Margin="20" />
 
 
-            <sorter:SorterControl DataContext="{Binding }"/>
+            <sorter:SorterControl Height="300" DataContext="{Binding }"/>
         </StackPanel>
 
     </Grid>

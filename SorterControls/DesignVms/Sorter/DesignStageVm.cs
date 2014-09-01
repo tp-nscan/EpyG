@@ -6,7 +6,7 @@ using Sorting.KeyPairs;
 
 namespace SorterControls.DesignVms.Sorter
 {
-    public class DesignStageVm : StageVm
+    public class DesignStageVm : StageVmImpl
     {
         public DesignStageVm()
             : base
@@ -33,68 +33,68 @@ namespace SorterControls.DesignVms.Sorter
            get
            {
                yield return
-                   new KeyPairVm()
-                   {
-                       KeyPair = KeyPairRepository.KeyPairFromKeys(0, 1),
-                       Position = 0,
-                       SwitchBrush = new SolidColorBrush(Colors.Olive)
-                   };
+                   new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(0, 1),
+                           switchBrush: new SolidColorBrush(Colors.Olive),
+                           position: 0
+                       );
 
                yield return
-                    new KeyPairVm()
-                    {
-                        KeyPair = KeyPairRepository.KeyPairFromKeys(3, 7),
-                        Position = 0,
-                        SwitchBrush = new SolidColorBrush(Colors.SeaGreen)
-                    };
+                    new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(3, 7),
+                           switchBrush: new SolidColorBrush(Colors.SeaGreen),
+                           position: 0
+                       );
 
                yield return
-                   new KeyPairVm()
-                   {
-                       KeyPair = KeyPairRepository.KeyPairFromKeys(1, 2),
-                       Position = 1,
-                       SwitchBrush = new SolidColorBrush(Colors.OrangeRed)
-                   };
+                   new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(1, 2),
+                           switchBrush: new SolidColorBrush(Colors.OrangeRed),
+                           position: 1
+                       );
 
                yield return
-                    new KeyPairVm()
-                    {
-                        KeyPair = KeyPairRepository.KeyPairFromKeys(5, 6),
-                        Position = 1,
-                        SwitchBrush = new SolidColorBrush(Colors.SlateBlue)
-                    };
+                    new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(5, 6),
+                           switchBrush: new SolidColorBrush(Colors.SlateBlue),
+                           position: 1
+                       );
 
                yield return
-                   new KeyPairVm()
-                   {
-                       KeyPair = KeyPairRepository.KeyPairFromKeys(3, 7),
-                       Position = 2,
-                       SwitchBrush = new SolidColorBrush(Colors.PaleVioletRed)
-                   };
+                   new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(3, 7),
+                           switchBrush: new SolidColorBrush(Colors.PaleVioletRed),
+                           position: 2
+                       );
 
                yield return
-                   new KeyPairVm()
-                   {
-                       KeyPair = KeyPairRepository.KeyPairFromKeys(0, 4),
-                       Position = 3,
-                       SwitchBrush = new SolidColorBrush(Colors.Orchid)
-                   };
+                   new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(0, 4),
+                           switchBrush: new SolidColorBrush(Colors.Orchid),
+                           position: 3
+                       );
 
                yield return
-                    new KeyPairVm()
-                    {
-                        KeyPair = KeyPairRepository.KeyPairFromKeys(1, 5),
-                        Position = 4,
-                        SwitchBrush = new SolidColorBrush(Colors.Navy)
-                    };
+                    new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(1, 5),
+                           switchBrush: new SolidColorBrush(Colors.Navy),
+                           position: 4
+                       );
 
                yield return
-                     new KeyPairVm()
-                     {
-                         KeyPair = KeyPairRepository.KeyPairFromKeys(2, 6),
-                         Position = 5,
-                         SwitchBrush = new SolidColorBrush(Colors.SaddleBrown)
-                     };
+                     new KeyPairVm
+                       (
+                           keyPair: KeyPairRepository.KeyPairFromKeys(2, 6),
+                           switchBrush: new SolidColorBrush(Colors.SaddleBrown),
+                           position: 5
+                       );
 
 
            }

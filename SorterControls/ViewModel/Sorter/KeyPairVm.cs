@@ -5,10 +5,30 @@ namespace SorterControls.ViewModel.Sorter
 {
     public class KeyPairVm
     {
-        public IKeyPair KeyPair { get; set; }
+        public KeyPairVm(IKeyPair keyPair, Brush switchBrush, int position)
+        {
+            _switchBrush = switchBrush;
+            _position = position;
+            _keyPair = keyPair;
+        }
 
-        public Brush SwitchBrush { get; set; }
+        private readonly IKeyPair _keyPair;
+        public IKeyPair KeyPair
+        {
+            get { return _keyPair; }
+        }
 
-        public int Position { get; set; }
+
+        private readonly Brush _switchBrush;
+        public Brush SwitchBrush
+        {
+            get { return _switchBrush; }
+        }
+
+        private readonly int _position;
+        public int Position
+        {
+            get { return _position; }
+        }
     }
 }

@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
-using Sorting.KeyPairs;
+using Sorting.Sorters;
+using Sorting.Stages;
 
 namespace SorterControls.ViewModel.Sorter
 {
     public interface ISorterVm
     {
         int KeyCount { get; }
-        IReadOnlyList<StageVm> StageVms { get; }
+        IReadOnlyList<IStageVm> StageVms { get; }
     }
 
     public static class SorterVm
     {
-        public const int _keyCount = 8;
-        private const double _switchWidth = 0.3;
-        private const double _lineThickness = 0.07;
-        private static readonly Brush _lineBrush = new SolidColorBrush(Colors.Black);
-        private static readonly Brush _backgroundBrush = new SolidColorBrush(Colors.WhiteSmoke);
+        public const double StandardSwitchWidth = 0.3;
+        public const double StandardineThickness = 0.07;
 
         public static ISorterVm Make
             (
                 int keyCount,
-                IReadOnlyList<StageVm> stageVms
+                IReadOnlyList<IStageVm> stageVms
             )
         {
             return new SorterVmImpl
@@ -32,30 +30,57 @@ namespace SorterControls.ViewModel.Sorter
                 );
         }
 
-        //public static ISorterVm MakeUnstaged
-        //    (
-        //        int keyCount,
-        //        IReadOnlyList<IKeyPair> keyPairs
-        //    )
-        //{
-        //    return new SorterVmImpl
-        //        (
-        //            keyCount: keyCount,
-        //            stageVms: keyPairs.Select(
+        public static ISorterVm ToStagedSorterVm(
+            this ISorter sorter,
+            Brush foregroundBrush,
+            Brush backgroundBrush
+        )
+            {
+                return new SorterVmImpl
+                    (
+                        keyCount: sorter.KeyCount,
+                        stageVms: sorter.ToStagedSorter().SorterStages.Select
+                            (
+                                ss => ss.ToStageVm
+                                    (
+                                        switchWidth: StandardSwitchWidth,
+                                        lineThickness: StandardineThickness,
+                                        lineBrush: foregroundBrush,
+                                        backgroundBrush: backgroundBrush,
+                                        switchBrush: foregroundBrush
+                                    )
+                            ).ToList()
+                    );
 
-        //                    kp => new KeyPairVm()
-        //                    {
-        //                        KeyPair = KeyPairRepository.KeyPairFromKeys(0, 1),
-        //                        Position = 0,
-        //                        SwitchBrush = new SolidColorBrush(Colors.Olive)
-        //                    }
+            }
+
+        public static ISorterVm ToStagedSorterVm(
+                this ISorter sorter,
+                double switchWidth,
+                double lineThickness,
+                Brush lineBrush,
+                Brush backgroundBrush,
+                Brush switchBrush
+            )
+        {
+            return new SorterVmImpl(
+                    keyCount: sorter.KeyCount,
+                    stageVms: sorter.ToStagedSorter().SorterStages.Select
+                        (
+                            ss=>ss.ToStageVm
+                                (
+                                    switchWidth: switchWidth,
+                                    lineThickness: lineThickness,
+                                    lineBrush:lineBrush,
+                                    backgroundBrush: backgroundBrush,
+                                    switchBrush: switchBrush
+                                )
+                        ).ToList()
+                );
+
+        }
 
 
-        //                ).ToList()
-        //        );
-
-
-        //}
     }
 
 
@@ -63,8 +88,8 @@ namespace SorterControls.ViewModel.Sorter
     {
         public SorterVmImpl
             (
-                int keyCount, 
-                IReadOnlyList<StageVm> stageVms
+                int keyCount,
+                IReadOnlyList<IStageVm> stageVms
             )
         {
             _keyCount = keyCount;
@@ -77,8 +102,8 @@ namespace SorterControls.ViewModel.Sorter
             get { return _keyCount; }
         }
 
-        private readonly IReadOnlyList<StageVm> _stageVms;
-        public IReadOnlyList<StageVm> StageVms
+        private readonly IReadOnlyList<IStageVm> _stageVms;
+        public IReadOnlyList<IStageVm> StageVms
         {
             get { return _stageVms; }
         }

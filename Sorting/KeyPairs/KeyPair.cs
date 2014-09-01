@@ -31,15 +31,12 @@ namespace Sorting.KeyPairs
             {
                 return false;
             }
-
             if (lhs.HiKey < rhs.LowKey)
             {
                 return false;
             }
-
             return true;
         }
-
 
 
         #region serialization

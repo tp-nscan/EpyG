@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:genome="clr-namespace:SorterControls.View.Genome"
+             xmlns:sorter="clr-namespace:SorterControls.View.Sorter"
              mc:Ignorable="d" >
     
     <DockPanel LastChildFill="True">
@@ -42,10 +43,8 @@
 
         
         
-        <ContentControl MinHeight="100">
-            
-            
-        </ContentControl>
+        <sorter:SorterControl DataContext="{Binding SorterVm}" />
+        
     </DockPanel>
     
 </UserControl>

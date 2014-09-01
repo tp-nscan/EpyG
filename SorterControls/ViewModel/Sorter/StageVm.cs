@@ -1,11 +1,59 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media;
+using SorterControls.View.Common;
+using Sorting.KeyPairs;
+using Sorting.Stages;
 
 namespace SorterControls.ViewModel.Sorter
 {
-    public class StageVm
+    public interface IStageVm
     {
-        public StageVm
+        IReadOnlyList<KeyPairVm> KeyPairVms { get; }
+        Brush LineBrush { get; }
+        int KeyCount { get; }
+        double SwitchWidth { get; }
+        double LineThickness { get; }
+        Brush BackgroundBrush { get; }
+    }
+
+    public static class StageVm
+    {
+        public static IStageVm ToStageVm
+            (
+                this ISorterStage<IKeyPair> sorterStage,
+                double switchWidth,
+                double lineThickness, 
+                Brush lineBrush, 
+                Brush backgroundBrush,
+                Brush switchBrush
+            )
+        {
+            return new StageVmImpl
+                (
+                    keyCount: sorterStage.KeyCount, 
+                    keyPairVms: sorterStage.ToStageLayouts()
+                                           .Select(
+                                                    sl=> new KeyPairVm
+                                                            (
+                                                                keyPair: sl.Item2, 
+                                                                switchBrush:switchBrush, 
+                                                                position:sl.Item1
+                                                            )
+                                                  ).ToList(), 
+                    switchWidth: switchWidth,
+                    lineThickness: lineThickness, 
+                    lineBrush: lineBrush, 
+                    backgroundBrush : backgroundBrush
+                );
+
+        }
+
+    }
+
+    public class StageVmImpl : IStageVm
+    {
+        public StageVmImpl
             (
                 int keyCount, 
                 IReadOnlyList<KeyPairVm> keyPairVms, 

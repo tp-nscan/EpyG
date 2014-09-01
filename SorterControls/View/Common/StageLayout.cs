@@ -13,7 +13,7 @@ namespace SorterControls.View.Common
         {
             var stageLayoutImpl = new StageLayoutImpl<T>();
 
-            foreach (var keyPair in sorterStage.KeyPairs)
+            foreach (var keyPair in sorterStage.KeyPairs.OrderBy(kp=>kp.Index))
             {
                 stageLayoutImpl.AddKeyPair(keyPair);
             }

@@ -14,7 +14,7 @@ namespace EpyG.View.Pages.Design.Genome
         public DesignGenome()
         {
             InitializeComponent();
-            DataContext = new DesignStageVm();
+            DataContext = new DesignSorterVm();
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
