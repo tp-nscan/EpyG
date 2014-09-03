@@ -103,6 +103,9 @@
     <Compile Include="View\SorterOld\UnstagedSorterControl.xaml.cs">
       <DependentUpon>UnstagedSorterControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Sorter\LabeledSorterControl.xaml.cs">
+      <DependentUpon>LabeledSorterControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Sorter\SorterControl.xaml.cs">
       <DependentUpon>SorterControl.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
     <Page Include="View\SorterOld\UnstagedSorterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Sorter\LabeledSorterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Sorter\SorterControl.xaml">
       <SubType>Designer</SubType>

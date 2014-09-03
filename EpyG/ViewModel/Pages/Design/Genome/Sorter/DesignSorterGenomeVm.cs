@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using FirstFloor.ModernUI.Presentation;
 using SorterControls.ViewModel.Genome;
 using SorterControls.ViewModel.Sorter;
+using Sorting.Json.Sorters;
+using Sorting.Sorters;
 
 namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 {
@@ -24,7 +27,10 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 
         protected virtual void ProcessGenome(ISorterGenomeEditorVm sorterGenomeEditorVm)
         {
-            SerializedGenome = sorterGenomeEditorVm.Serialized;
+            SerializedGenome = sorterGenomeEditorVm.KeyPairs.ToSorter(sorterGenomeEditorVm.KeyCount).ToJsonString();
+            SorterVm = sorterGenomeEditorVm.KeyPairs.ToSorter(GenomeEditorVm.KeyCount)
+                                            .ToStagedSorterVm(new SolidColorBrush(Colors.Black), 
+                                                              new SolidColorBrush(Colors.WhiteSmoke));
         }
 
 
@@ -68,7 +74,9 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 
         protected void OnCopyCommand(object param)
         {
-            Clipboard.SetText(SerializedGenome);
+            Clipboard.SetText(  
+                
+                SerializedGenome);
         }
 
         bool CanCopyCommand(object param)

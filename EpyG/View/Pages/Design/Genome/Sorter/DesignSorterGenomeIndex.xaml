@@ -10,16 +10,6 @@
     <Grid Style="{StaticResource ContentRoot}">
         
         
-        <!--<ScrollViewer>
-            <StackPanel MinWidth="200">
-                <TextBlock Text="DesignSorterGenomeIndex" Style="{StaticResource Heading2}" />
-                <genome:GenomeEditorSwitchIndexControl HorizontalAlignment="Left" Height="350"
-                    DataContext="{Binding SwitchListEditVm}"/>
-
-                <TextBox TextWrapping="Wrap" Width="300" HorizontalAlignment="Left" Text="{Binding SwitchListEditVm.Serialized}"/>
-            </StackPanel>
-        </ScrollViewer>-->
-        
         <genome:DesignSorterGenomeControl/>
 
 

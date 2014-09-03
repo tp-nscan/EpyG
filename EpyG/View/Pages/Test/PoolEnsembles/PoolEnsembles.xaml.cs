@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using CommonUI;
 using EpyG.ViewModel.Pages.Test;
+using EpyG.ViewModel.Pages.Test.PoolEnsembles;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 

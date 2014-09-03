@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.Composition;
 using FirstFloor.ModernUI.Presentation;
 
-namespace EpyG.ViewModel.Pages.Design
+namespace EpyG.ViewModel.Pages.Test.CompPool
 {
     [Export]
-    public class DesignSwitchableGroupGenomeVm : NotifyPropertyChanged
+    public class EvolveCompPoolVm : NotifyPropertyChanged
     {
+
     }
+
 }

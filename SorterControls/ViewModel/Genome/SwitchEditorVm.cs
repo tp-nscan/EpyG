@@ -82,11 +82,11 @@ namespace SorterControls.ViewModel.Genome
             {
                 if (columnName == "LowKey")
                 {
-                    return (LowKey.IsAValidLowKey(HiKey, KeyCount)) ? null : "Incorrect key value";
+                    return (LowKey.IsAValidLowKey(HiKey, KeyCount)) ? null : " ";
                 }
                 if (columnName == "HiKey")
                 {
-                    return (HiKey.IsAValidHiKey(LowKey, KeyCount)) ? null : "Incorrect key value";
+                    return (HiKey.IsAValidHiKey(LowKey, KeyCount)) ? null : " ";
                 }
                 return null;
             }

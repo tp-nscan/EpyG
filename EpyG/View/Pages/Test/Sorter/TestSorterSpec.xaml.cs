@@ -1,49 +1,45 @@
 ﻿using System.ComponentModel.Composition;
 using CommonUI;
-using EpyG.ViewModel.Pages.Test;
-using EpyG.ViewModel.Pages.Test.CompPool;
+using EpyG.ViewModel.Pages.Test.Sorter;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 
-namespace EpyG.View.Pages.Test.CompPool
+namespace EpyG.View.Pages.Test.Sorter
 {
-    /// <summary>
-    /// Interaction logic for SinglePool.xaml
-    /// </summary>
-    [ModernUiContent("/View/Pages/Test/CompPool/EvolveCompPool.xaml")]
-    public partial class EvolveCompPool : IContent, IPartImportsSatisfiedNotification
+    [ModernUiContent("/View/Pages/Test/Sorter/TestSorterSpec.xaml")]
+    public partial class TestSorterSpec : IContent, IPartImportsSatisfiedNotification
     {
-        public EvolveCompPool()
+        public TestSorterSpec()
         {
             InitializeComponent();
         }
 
         [Import]
-        EvolveCompPoolVm EvolveCompPoolVm { get; set; }
+        TestSorterSpecVm TestSorterSpecVm { get; set; }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-
+            var s = "S";
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-
+            var s = "S";
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            var s = "S";
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-
+            var s = "S";
         }
 
         public void OnImportsSatisfied()
         {
-            DataContext = EvolveCompPoolVm;
+            DataContext = TestSorterSpecVm;
         }
     }
 }

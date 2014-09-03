@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using CommonUI;
 using EpyG.ViewModel.Pages.Design;
+using EpyG.ViewModel.Pages.Design.Genome.SwitchableGroup;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 

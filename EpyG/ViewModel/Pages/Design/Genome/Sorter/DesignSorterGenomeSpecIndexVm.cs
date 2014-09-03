@@ -34,7 +34,7 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
             set
             {
                 _suggestedKeyParam = value;
-                SerializedGenomeSequence = Rando.Fast(123).ToKeyPairs(value.KeyCount).Take(2).ToSerialized();
+                SerializedGenomeSequence = Rando.Fast(123).ToKeyPairs(value.KeyCount).Take(200).ToSerialized();
                 OnPropertyChanged("SuggestedKeyParam");
             }
         }
@@ -67,7 +67,6 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
         public IReadOnlyList<IKeyPair> KeyPairs { get; set; } 
 
         private bool _sequenceWasParsedCorrectly = true;
-
         public bool SequenceWasParsedCorrectly
         {
             get { return _sequenceWasParsedCorrectly; }

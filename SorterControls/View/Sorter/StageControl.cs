@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 using SorterControls.ViewModel.Sorter;
 
 namespace SorterControls.View.Sorter
@@ -25,8 +27,14 @@ namespace SorterControls.View.Sorter
             _stageWidth = null;
             _stageWidth = null;
 
-            Width = StageWidth.Value;
-            InvalidateVisual();
+            Dispatcher.BeginInvoke(
+                DispatcherPriority.Input,
+                new Action(() =>
+            {
+                Width = StageWidth.Value;
+                InvalidateVisual();
+            }));
+
         }
 
         protected override void OnRender(DrawingContext dc)

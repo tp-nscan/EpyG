@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.Composition;
 using FirstFloor.ModernUI.Presentation;
 
-namespace EpyG.ViewModel.Pages.Test
+namespace EpyG.ViewModel.Pages.Test.Sorter
 {
     [Export]
-    public class EvolveCompPoolVm : NotifyPropertyChanged
+    public class TestSorterVm : NotifyPropertyChanged
     {
+
     }
 }

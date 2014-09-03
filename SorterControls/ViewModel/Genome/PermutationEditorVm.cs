@@ -13,8 +13,16 @@ namespace SorterControls.ViewModel.Genome
             get { return GenomeEditorType.Permutation; }
         }
 
+        public int KeyCount
+        {
+            get { return _keyCount; }
+        }
+
         private readonly Subject<ISorterGenomeEditorVm> _onGenomeChanged
             = new Subject<ISorterGenomeEditorVm>();
+
+        private int _keyCount;
+
         public IObservable<ISorterGenomeEditorVm> OnGenomeChanged
         {
             get { return _onGenomeChanged; }

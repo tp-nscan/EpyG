@@ -10,6 +10,7 @@ namespace SorterControls.ViewModel.Sorter
     {
         int KeyCount { get; }
         IReadOnlyList<IStageVm> StageVms { get; }
+        IList<string> KeyLabels { get; } 
     }
 
     public static class SorterVm
@@ -94,6 +95,7 @@ namespace SorterControls.ViewModel.Sorter
         {
             _keyCount = keyCount;
             _stageVms = stageVms;
+            _keyLabels = Enumerable.Range(0, KeyCount).Select(i => i.ToString()).ToList();
         }
 
         private readonly int _keyCount;
@@ -103,9 +105,17 @@ namespace SorterControls.ViewModel.Sorter
         }
 
         private readonly IReadOnlyList<IStageVm> _stageVms;
+
+
         public IReadOnlyList<IStageVm> StageVms
         {
             get { return _stageVms; }
+        }
+
+        private readonly IList<string> _keyLabels;
+        public IList<string> KeyLabels
+        {
+            get { return _keyLabels; }
         }
     }
 }

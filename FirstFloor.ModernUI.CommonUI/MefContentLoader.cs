@@ -22,6 +22,12 @@ namespace CommonUI
                            where c.Metadata.ContentUri == uri.OriginalString
                            select c.Value).FirstOrDefault();
 
+            //foreach (var lazy in Contents)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(lazy.Metadata.ContentUri);
+            //}
+
+
             if (content == null) {
                 throw new ArgumentException("Invalid uri: " + uri);
             }

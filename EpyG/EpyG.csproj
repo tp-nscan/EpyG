@@ -81,16 +81,18 @@
     <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeVm.cs" />
     <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeTypeVm.cs" />
     <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeIndexVm.cs" />
-    <Compile Include="ViewModel\Pages\Design\DesignSwitchableGroupGenomeVm.cs" />
+    <Compile Include="ViewModel\Pages\Design\Genome\SwitchableGroup\DesignSwitchableGroupGenomeVm.cs" />
     <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecIndexVm.cs" />
     <Compile Include="ViewModel\Pages\Design\Genome\Sorter\DesignSorterGenomeSpecPermutationVm.cs" />
-    <Compile Include="ViewModel\Pages\Test\EvolveCompPoolVm.cs" />
-    <Compile Include="ViewModel\Pages\Test\PoolEnsemblesVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\CompPool\EvolveCompPoolVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\PoolEnsembles\PoolEnsemblesVm.cs" />
     <Compile Include="ViewModel\Pages\Gallery\GalleryCompPoolsVm.cs" />
     <Compile Include="ViewModel\Pages\Gallery\GallerySortersVm.cs" />
     <Compile Include="ViewModel\Pages\Gallery\HoflVm.cs" />
     <Compile Include="ViewModel\Pages\Settings\AboutVm.cs" />
     <Compile Include="ViewModel\Pages\Settings\PerformanceVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\Sorter\TestSorterSpecVm.cs" />
+    <Compile Include="ViewModel\Pages\Test\Sorter\TestSorterVm.cs" />
     <Compile Include="ViewModel\Pages\Welcome\IntroductionVm.cs" />
     <Compile Include="View\Content\EnsembleParams.xaml.cs">
       <DependentUpon>EnsembleParams.xaml</DependentUpon>
@@ -166,6 +168,12 @@
     </Compile>
     <Compile Include="View\Pages\Settings\Performance.xaml.cs">
       <DependentUpon>Performance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Test\Sorter\TestSorter.xaml.cs">
+      <DependentUpon>TestSorter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Test\Sorter\TestSorterSpec.xaml.cs">
+      <DependentUpon>TestSorterSpec.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Welcome\Intro\Introduction.xaml.cs">
       <DependentUpon>Introduction.xaml</DependentUpon>
@@ -310,6 +318,14 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="View\Pages\Test\Sorter\TestSorter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Test\Sorter\TestSorterSpec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Welcome\Intro\Introduction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -357,9 +373,7 @@
       <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Pages\Design\Genome\SwitchableGroup\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

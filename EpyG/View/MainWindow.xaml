@@ -40,6 +40,7 @@
 
         <mui:LinkGroup DisplayName="test">
             <mui:LinkGroup.Links>
+                <mui:Link DisplayName="sorter" Source="/View/Pages/Test/Sorter/TestSorterSpec.xaml" />
                 <mui:Link DisplayName="comp pool" Source="/View/Pages/Test/CompPool/EvolveCompPool.xaml" />
                 <mui:Link DisplayName="pool ensembles" Source="/View/Pages/Test/PoolEnsembles/PoolEnsembles.xaml" />
             </mui:LinkGroup.Links>
