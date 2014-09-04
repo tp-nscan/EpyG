@@ -63,6 +63,8 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Expando\ExpandoJSONConverter.cs" />
     <Compile Include="Expando\DictionaryExtensions.cs" />
+    <Compile Include="Interval\HalfOpenIntInterval.cs" />
+    <Compile Include="Interval\HalfOpenIntIntervalGroup.cs" />
     <Compile Include="Interval\IntInterval.cs" />
     <Compile Include="Interval\RealInterval.cs" />
     <Compile Include="Interval\RealIntervalExt.cs" />

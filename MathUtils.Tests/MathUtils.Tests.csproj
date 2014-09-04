@@ -76,6 +76,7 @@
     <Compile Include="Collections\ListPropigatorFixture.cs" />
     <Compile Include="Collections\QueueFixture.cs" />
     <Compile Include="Expando\ExpandoJsonConverterFixture.cs" />
+    <Compile Include="Interval\HalfOpenIntIntervalFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interval\RealIntervalFixture.cs" />
     <Compile Include="Rand\RandoFixture.cs" />

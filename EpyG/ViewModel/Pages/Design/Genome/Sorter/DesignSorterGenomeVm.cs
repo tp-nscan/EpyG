@@ -20,19 +20,19 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
             set
             {
                 _genomeEditorVm = value;
-                _genomeEditorVm.OnGenomeChanged.Subscribe(ProcessGenome);
-                ProcessGenome(value);
+                _genomeEditorVm.OnGenomeChanged.Subscribe(UpdateGenome);
+                UpdateGenome(value);
             }
         }
 
-        protected virtual void ProcessGenome(ISorterGenomeEditorVm sorterGenomeEditorVm)
+        protected virtual void UpdateGenome(ISorterGenomeEditorVm sorterGenomeEditorVm)
         {
             SerializedGenome = sorterGenomeEditorVm.KeyPairs.ToSorter(sorterGenomeEditorVm.KeyCount).ToJsonString();
-            SorterVm = sorterGenomeEditorVm.KeyPairs.ToSorter(GenomeEditorVm.KeyCount)
-                                            .ToStagedSorterVm(new SolidColorBrush(Colors.Black), 
+            SorterVm = sorterGenomeEditorVm.KeyPairs
+                                           .ToSorter(GenomeEditorVm.KeyCount)
+                                           .ToStagedSorterVm(new SolidColorBrush(Colors.Black), 
                                                               new SolidColorBrush(Colors.WhiteSmoke));
         }
-
 
         private ISorterVm _sorterVm;
         public ISorterVm SorterVm
@@ -74,9 +74,7 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 
         protected void OnCopyCommand(object param)
         {
-            Clipboard.SetText(  
-                
-                SerializedGenome);
+            Clipboard.SetText(SerializedGenome);
         }
 
         bool CanCopyCommand(object param)
