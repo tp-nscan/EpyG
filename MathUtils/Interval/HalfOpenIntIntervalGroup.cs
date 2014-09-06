@@ -2,64 +2,151 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MathUtils.Collections;
 
 namespace MathUtils.Interval
 {
-    public interface IHalfOpenIntIntervalGroup
+    public interface IHalfOpenIntIntervalGroup<T>
     {
-        IEnumerable<IHalfOpenIntInterval> HalfOpenIntIntervals { get; }
+        IEnumerable<IHalfOpenIntInterval<T>> HalfOpenIntIntervals { get; }
+        IHalfOpenIntIntervalGroup<T> Add<T>(IHalfOpenIntInterval<T> interval, Func<T, T, T> mergeFunc);
     }
 
     public static class HalfOpenIntIntervalGroup
     {
-        public static IHalfOpenIntIntervalGroup Make()
+             public static IEnumerable<Tuple<int, int>> ToUncoveredSpans<T>
+            (
+                this IHalfOpenIntIntervalGroup<T> halfOpenIntIntervalGroup,
+                int lowerBound,
+                int upperBound
+            )
         {
-            return new HalfOpenIntIntervalGroupImpl();
+                if (! halfOpenIntIntervalGroup.HalfOpenIntIntervals.Any())
+                {
+                    yield return new Tuple<int, int>(lowerBound, upperBound);
+                }
+
+                 var groupLowerBound = halfOpenIntIntervalGroup.HalfOpenIntIntervals.First().Min;
+                 if (lowerBound < groupLowerBound)
+                 {
+                     yield return new Tuple<int, int>(lowerBound, groupLowerBound);
+                 }
+
+
+                 foreach (var tuple in halfOpenIntIntervalGroup.HalfOpenIntIntervals
+                                            .ToGapResults((f,s) => new Tuple<int,int>(f.Max, s.Min)))
+                 {
+                     yield return tuple;
+                 }
+                 
+                 var groupUpperBound = halfOpenIntIntervalGroup.HalfOpenIntIntervals.Last().Max;
+                 if (upperBound > groupLowerBound)
+                 {
+                     yield return new Tuple<int, int>(groupUpperBound, upperBound);
+                 }
+        }
+
+        public static IEnumerable<IHalfOpenIntInterval<T>> ToPatches<T>
+            (
+                this IHalfOpenIntIntervalGroup<T> halfOpenIntIntervalGroup,
+                int lowerBound,
+                int upperBound, 
+                int span, 
+                T payload
+            )
+        {
+            return halfOpenIntIntervalGroup
+                .ToUncoveredSpans(lowerBound, upperBound)
+                .SelectMany(tuple => HalfOpenIntInterval.SpanRange(tuple.Item1, tuple.Item2, span, payload));
+        }
+
+
+        public static IHalfOpenIntIntervalGroup<T> Make<T>()
+        {
+            return new HalfOpenIntIntervalGroupImpl<T>();
+        }
+
+        public static IEnumerable<IHalfOpenIntInterval<T>> PatchIn<T>
+        (
+            IList<IHalfOpenIntInterval<T>> intervals,
+            IHalfOpenIntInterval<T> rhs, Func<T, T, T> mergeFunc)
+        {
+            var wasAdded = false;
+            foreach (var halfOpenIntInterval in intervals)
+            {
+                if (wasAdded)
+                {
+                    yield return halfOpenIntInterval;
+                    continue;
+                }
+                if (rhs.Max < halfOpenIntInterval.Min)
+                {
+                    yield return rhs;
+                    wasAdded = true;
+                    yield return halfOpenIntInterval;
+                    continue;
+                }
+                if (rhs.AdjacentOrOverlap(halfOpenIntInterval))
+                {
+                    rhs = rhs.Merge(halfOpenIntInterval, mergeFunc);
+                    continue;
+                }
+                yield return halfOpenIntInterval;
+            }
+            if (wasAdded == false)
+            {
+                yield return rhs;
+            }
         }
     }
 
-    public class HalfOpenIntIntervalGroupImpl : IHalfOpenIntIntervalGroup
+    public class HalfOpenIntIntervalGroupImpl<T> : IHalfOpenIntIntervalGroup<T>
     {
         public HalfOpenIntIntervalGroupImpl()
         {
-            _halfOpenIntIntervals = ImmutableList<IHalfOpenIntInterval>.Empty;
+            _halfOpenIntIntervals = ImmutableList<IHalfOpenIntInterval<T>>.Empty;
         }
 
-        HalfOpenIntIntervalGroupImpl(ImmutableList<IHalfOpenIntInterval> halfOpenIntIntervals)
+        HalfOpenIntIntervalGroupImpl(IList<IHalfOpenIntInterval<T>> halfOpenIntIntervals)
         {
             _halfOpenIntIntervals = halfOpenIntIntervals;
         }
 
-        public IHalfOpenIntIntervalGroup Add(IHalfOpenIntInterval interval)
+        public IHalfOpenIntIntervalGroup<T> Add<T>(IHalfOpenIntInterval<T> interval, Func<T, T, T> mergeFunc)
         {
-            var dex = _halfOpenIntIntervals.FindIndex(h => interval.Max < h.Min);
-            if (dex == -1)
+            var newList = new List<IHalfOpenIntInterval<T>>();
+
+            var wasAdded = false;
+            foreach (IHalfOpenIntInterval<T> halfOpenIntInterval in _halfOpenIntIntervals)
             {
-                if (_halfOpenIntIntervals.Last().AdjacentOrOverlap(interval))
+                if (wasAdded)
                 {
-                    var newList = _halfOpenIntIntervals.RemoveAt(_halfOpenIntIntervals.Count - 1);
-                    return new HalfOpenIntIntervalGroupImpl(newList.Add(_halfOpenIntIntervals.Last().Merge(interval)));
+                    newList.Add(halfOpenIntInterval);
+                    continue;
                 }
-                return new HalfOpenIntIntervalGroupImpl(_halfOpenIntIntervals.Add(interval));
+                if (interval.Max < halfOpenIntInterval.Min)
+                {
+                    newList.Add(interval);
+                    wasAdded = true;
+                    newList.Add(halfOpenIntInterval);
+                    continue;
+                }
+                if (interval.AdjacentOrOverlap(halfOpenIntInterval))
+                {
+                    interval = interval.Merge(halfOpenIntInterval, mergeFunc);
+                    continue;
+                }
+                newList.Add(halfOpenIntInterval);
             }
-
-            if (dex == 0)
+            if (wasAdded == false)
             {
-                return new HalfOpenIntIntervalGroupImpl(_halfOpenIntIntervals.Insert(0, interval));
+                newList.Add(interval);
             }
-
-            if (_halfOpenIntIntervals.Last().AdjacentOrOverlap(interval))
-            {
-                var newList = _halfOpenIntIntervals.RemoveAt(_halfOpenIntIntervals.Count - 1);
-                return new HalfOpenIntIntervalGroupImpl(newList.Add(_halfOpenIntIntervals.Last().Merge(interval)));
-            }
-            return new HalfOpenIntIntervalGroupImpl(_halfOpenIntIntervals.Add(interval));
+            return new HalfOpenIntIntervalGroupImpl<T>(newList);
         }
 
-        private readonly ImmutableList<IHalfOpenIntInterval> _halfOpenIntIntervals;
-        public IEnumerable<IHalfOpenIntInterval> HalfOpenIntIntervals
+        private readonly IList<IHalfOpenIntInterval<T>> _halfOpenIntIntervals;
+        public IEnumerable<IHalfOpenIntInterval<T>> HalfOpenIntIntervals
         {
             get { return _halfOpenIntIntervals; }
         }

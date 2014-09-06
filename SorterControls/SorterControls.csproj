@@ -110,6 +110,12 @@
       <DependentUpon>SorterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Sorter\StageControl.cs" />
+    <Compile Include="View\Test\SwitchableDispatchControl.xaml.cs">
+      <DependentUpon>SwitchableDispatchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Test\TestSorterControl.xaml.cs">
+      <DependentUpon>TestSorterControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="TemplateSelectorsOld\SorterSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,6 +165,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Sorter\SorterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Test\SwitchableDispatchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Test\TestSorterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

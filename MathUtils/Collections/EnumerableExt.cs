@@ -140,6 +140,33 @@ namespace MathUtils.Collections
             }
         }
 
+        public static IEnumerable<G> ToGapResults<T, G>(this IEnumerable<T> items, Func<T,T,G> gapFunc)
+        {
+            var keyEnumerator = items.GetEnumerator();
+
+            var firstVal = default(T);
+            var secondVal = default(T);
+
+            if (!keyEnumerator.MoveNext())
+            {
+                yield break;
+            }
+            secondVal = keyEnumerator.Current;
+
+            while (true)
+            {
+                if (!keyEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                firstVal = secondVal;
+                secondVal = keyEnumerator.Current;
+
+                yield return gapFunc(firstVal, secondVal);
+            }
+        }
+
         public static IEnumerable<IReadOnlyList<T>> Slice<T>(this IEnumerable<T> enumerT, int chunkSize)
         {
             var retChunk = new List<T>();

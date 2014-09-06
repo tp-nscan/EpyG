@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Media;
 using SorterControls.View.Common;
+using Sorting.Evals;
 using Sorting.KeyPairs;
 using Sorting.Stages;
 
@@ -34,13 +35,13 @@ namespace SorterControls.ViewModel.Sorter
                     keyCount: sorterStage.KeyCount, 
                     keyPairVms: sorterStage.ToStageLayouts()
                                            .Select(
-                                                    sl=> new KeyPairVm
-                                                            (
-                                                                keyPair: sl.Item2, 
-                                                                switchBrush:switchBrush, 
-                                                                position:sl.Item1
-                                                            )
-                                                  ).ToList(), 
+                                    sl=> new KeyPairVm
+                                            (
+                                                keyPair: sl.Item2, 
+                                                switchBrush:switchBrush, 
+                                                position:sl.Item1
+                                            )
+                                    ).ToList(), 
                     switchWidth: switchWidth,
                     lineThickness: lineThickness, 
                     lineBrush: lineBrush, 
@@ -48,6 +49,44 @@ namespace SorterControls.ViewModel.Sorter
                 );
 
         }
+
+        public static IStageVm ToStageVm
+        (
+            this ISorterStage<ISwitchEval> sorterStage,
+            int useMax,
+            double switchWidth,
+            double lineThickness,
+            Brush lineBrush,
+            Brush backgroundBrush,
+            IReadOnlyList<Brush> switchBrushes
+        )
+        {
+            return new StageVmImpl
+                (
+                    keyCount: sorterStage.KeyCount,
+                    keyPairVms: sorterStage.ToStageLayouts()
+                                           .Select(
+                                    sl => new KeyPairVm
+                                            (
+                                                keyPair: sl.Item2,
+                                                switchBrush: BrushFactory.LogBrushOfInt
+                                                (
+                                                        value: (int) sl.Item2.UseCount,
+                                                        max: useMax, 
+                                                        brushList: switchBrushes
+                                                ),
+                                                position: sl.Item1
+                                            )
+                                    ).ToList(),
+                    switchWidth: switchWidth,
+                    lineThickness: lineThickness,
+                    lineBrush: lineBrush,
+                    backgroundBrush: backgroundBrush
+                );
+
+        }
+
+
 
     }
 

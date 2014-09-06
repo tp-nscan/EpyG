@@ -65,17 +65,17 @@ namespace SorterControls.View.Common
         }
 
 
-        public static Brush LogBrushOfInt(int value, int max)
+        public static Brush LogBrushOfInt(int value, int max, IReadOnlyList<Brush> brushList)
         {
             if (value == 0)
             {
-                return GrayThenBlueToRedBrushes()[0];
+                return brushList[0];
             }
 
-            var offset = Math.Log(value)*15/Math.Log(max);
+            var offset = Math.Log(value) * (brushList.Count -1) / Math.Log(max);
             var intDex = 1 + (int) offset;
 
-            return GrayThenBlueToRedBrushes()[intDex];
+            return brushList[intDex];
         }
     }
 

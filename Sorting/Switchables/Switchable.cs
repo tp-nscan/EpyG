@@ -59,7 +59,7 @@ namespace Sorting.Switchables
         public static ISwitchable<uint[]> ToSwitchableIntArray(this IRando random, int keyCount)
         {
             return  Enumerable.Range(0, keyCount)
-                    .Cast<uint>()
+                    .Select(i=>(uint)i)
                     .ToArray()
                     .FisherYatesShuffle(random)
                     .ToSwitchableIntArray();

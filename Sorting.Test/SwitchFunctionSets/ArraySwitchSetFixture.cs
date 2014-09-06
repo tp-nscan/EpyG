@@ -58,7 +58,6 @@ namespace Sorting.Test.SwitchFunctionSets
 
                 Assert.IsNotNull(bitArraySwitchSet.SwitchFunction(keyPair));
             }
-
         }
 
         [TestMethod]
@@ -91,8 +90,6 @@ namespace Sorting.Test.SwitchFunctionSets
                 Assert.IsNotNull(intArraySwitchSet.SwitchFunction(keyPair));
             }
         }
-
-
 
         [TestMethod]
         public void TestIntArraySwitchSetFunctionsSwitchTheRightIndexes()

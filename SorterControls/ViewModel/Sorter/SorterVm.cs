@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
+using SorterControls.View.Common;
+using Sorting.Evals;
 using Sorting.Sorters;
 using Sorting.Stages;
 
@@ -78,10 +80,32 @@ namespace SorterControls.ViewModel.Sorter
                                 )
                         ).ToList()
                 );
-
         }
 
-
+        //public static ISorterVm ToStagedSorterVm(
+        //    this ISorterEval sorterEval,
+        //    double switchWidth,
+        //    double lineThickness,
+        //    Brush lineBrush,
+        //    Brush backgroundBrush
+        //)
+        //{
+        //    return new SorterVmImpl(
+        //            keyCount: sorterEval.KeyCount,
+        //            stageVms: sorterEval.ToStagedSorter().SorterStages.Select
+        //                (
+        //                    ss => ss.ToStageVm
+        //                        (
+        //                            switchWidth: switchWidth,
+        //                            useMax: sorterEval.SwitchableGroupCount,
+        //                            lineThickness: lineThickness,
+        //                            lineBrush: lineBrush,
+        //                            backgroundBrush: backgroundBrush,
+        //                            switchBrushes: BrushFactory.GrayThenBlueToRedBrushes()
+        //                        )
+        //                ).ToList()
+        //        );
+        //}
     }
 
 

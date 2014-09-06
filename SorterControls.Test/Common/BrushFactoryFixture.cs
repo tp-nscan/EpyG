@@ -10,7 +10,7 @@ namespace SorterControls.Test
         [TestMethod]
         public void TestLogBrushOfInt()
         {
-            var res = BrushFactory.LogBrushOfInt(1, 4096);
+            var res = BrushFactory.LogBrushOfInt(1, 4096, BrushFactory.GrayThenBlueToRedBrushes());
         }
     }
 }
