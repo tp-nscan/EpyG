@@ -8,11 +8,17 @@ namespace SorterControls.ViewModel.Genome
 {
     public class PermutationEditorVm : NotifyPropertyChanged, ISorterGenomeEditorVm
     {
+        public PermutationEditorVm(int keyCount)
+        {
+            _keyCount = keyCount;
+        }
+
         public GenomeEditorType GenomeEditorType
         {
             get { return GenomeEditorType.Permutation; }
         }
 
+        private readonly int _keyCount;
         public int KeyCount
         {
             get { return _keyCount; }
@@ -20,8 +26,6 @@ namespace SorterControls.ViewModel.Genome
 
         private readonly Subject<ISorterGenomeEditorVm> _onGenomeChanged
             = new Subject<ISorterGenomeEditorVm>();
-
-        private int _keyCount;
 
         public IObservable<ISorterGenomeEditorVm> OnGenomeChanged
         {

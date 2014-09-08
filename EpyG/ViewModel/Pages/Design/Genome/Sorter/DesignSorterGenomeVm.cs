@@ -5,6 +5,7 @@ using System.Windows.Media;
 using FirstFloor.ModernUI.Presentation;
 using SorterControls.ViewModel.Genome;
 using SorterControls.ViewModel.Sorter;
+using Sorting.Evals;
 using Sorting.Json.Sorters;
 using Sorting.Sorters;
 
@@ -27,11 +28,16 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 
         protected virtual void UpdateGenome(ISorterGenomeEditorVm sorterGenomeEditorVm)
         {
-            SerializedGenome = sorterGenomeEditorVm.KeyPairs.ToSorter(sorterGenomeEditorVm.KeyCount).ToJsonString();
+            SerializedGenome = sorterGenomeEditorVm.KeyPairs
+                                                   .ToSorter(sorterGenomeEditorVm.KeyCount)
+                                                   .ToJsonString();
+
             SorterVm = sorterGenomeEditorVm.KeyPairs
-                                           .ToSorter(GenomeEditorVm.KeyCount)
-                                           .ToStagedSorterVm(new SolidColorBrush(Colors.Black), 
-                                                              new SolidColorBrush(Colors.WhiteSmoke));
+                               .ToSorter(GenomeEditorVm.KeyCount)
+                               .ToFullSorterResult()
+                               .ToSorterEval()
+                               .ToStagedSorterVm(new SolidColorBrush(Colors.Black),
+                                                 new SolidColorBrush(Colors.WhiteSmoke));
         }
 
         private ISorterVm _sorterVm;

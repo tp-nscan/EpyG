@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModel="clr-namespace:EpyG.ViewModel"
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:content="clr-namespace:EpyG.View.Content"
              mc:Ignorable="d" 
@@ -15,12 +14,6 @@
                 <Setter Property="Margin" Value="3" />
             </Style>
         </Grid.Resources>
-
-        
-        <!-- create viewmodel -->
-        <!--<Grid.DataContext>
-            <viewModel:RandomSortersVm/>
-        </Grid.DataContext>-->
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -45,7 +38,7 @@
 
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="20" HorizontalAlignment="Center">
-                    <Label Margin="5" Content="Elapsed time:"/>
+                    <TextBlock Margin="5" Text="Elapsed time:"/>
                     <TextBlock Margin="5" Text="{Binding ElapsedTime,StringFormat=hh\\:mm\\:ss}"/>
                 </StackPanel>
 

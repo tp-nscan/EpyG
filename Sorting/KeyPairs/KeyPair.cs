@@ -43,7 +43,7 @@ namespace Sorting.KeyPairs
 
         public static string ToSerialized(this IEnumerable<IKeyPair> keyPairs)
         {
-            return keyPairs.Aggregate(string.Empty, (acc, kp) => acc + kp.ToSerialized() + "; ");
+            return keyPairs.Aggregate(string.Empty, (acc, kp) => acc + kp.ToSerialized() + ",");
         }
 
         public static string ToSerialized(this IKeyPair keyPair)
@@ -65,7 +65,7 @@ namespace Sorting.KeyPairs
 
         public static IReadOnlyList<IKeyPair> ToKeyPairs(this string sequence)
         {
-            var pcs = sequence.Trim().Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var pcs = sequence.Trim().Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             return pcs.Select(kstr => kstr.ToKeyPair())
                       .ToList();
         }

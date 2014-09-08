@@ -86,19 +86,19 @@
                 <StackPanel Style="{DynamicResource StackPanelIndentedStyle}">
 
                     <StackPanel>
-                        <Label Content="fewest switches known:"/>
-                        <Label Margin="10,0,0,0" Content="{Binding SuggestedKeyParam.LeastSwitchesKnown}"/>
+                        <TextBlock Text="fewest switches known:"/>
+                        <TextBlock Margin="10,0,0,0" Text="{Binding SuggestedKeyParam.LeastSwitchesKnown}"/>
                     </StackPanel>
 
                     <StackPanel>
-                        <Label Content="fewest stages known:"/>
-                        <Label Margin="10,0,0,0" Content="{Binding SuggestedKeyParam.LeastStagesKnown}"/>
+                        <TextBlock Text="fewest stages known:"/>
+                        <TextBlock Margin="10,0,0,0" Text="{Binding SuggestedKeyParam.LeastStagesKnown}"/>
                     </StackPanel>
 
                 </StackPanel>
 
                 <StackPanel>
-                    <Label Content="Generation type" Target="{Binding ElementName=ComboState}"/>
+                    <Label Content="_Generation type" Target="{Binding ElementName=ComboState}"/>
                     <ComboBox x:Name="ComboState" Width="150"
                             ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
                             SelectedItem="{Binding GenomeSorterType}" 
@@ -107,7 +107,7 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <Label Content="Total switch count" Target="{Binding ElementName=ComboState}"/>
+                    <Label Content="_Total switch count" Target="{Binding ElementName=TextTotalSwitchCount}"/>
                     <TextBox x:Name="TextTotalSwitchCount" Width="50" Text="{Binding TotalSwitchCount, Mode=TwoWay, ValidatesOnDataErrors=True}" />
                 </StackPanel>
 
@@ -117,7 +117,7 @@
                        FontWeight="Bold"/>
 
                 <StackPanel>
-                    <Label Content="Max switches" Target="{Binding ElementName=ComboSwitchCountCutoff}"/>
+                    <Label Content="_Max switches" Target="{Binding ElementName=ComboSwitchCountCutoff}"/>
                     <ComboBox x:Name="ComboSwitchCountCutoff" 
                         Width="60"    
                         ItemsSource="{Binding SwitchCountCutoffs}"
@@ -130,7 +130,7 @@
                 </StackPanel>
                 
                 <StackPanel>
-                    <Label Content="Max stages" Target="{Binding ElementName=ComboStageCountCutoff}"/>
+                    <Label Content="Ma_x stages" Target="{Binding ElementName=ComboStageCountCutoff}"/>
                     <ComboBox x:Name="ComboStageCountCutoff" 
                         Width="60"    
                         ItemsSource="{Binding StageCountCutoffs}"
@@ -142,7 +142,7 @@
                 </StackPanel>
                 
                 <StackPanel>
-                    <Label Content="Report frequency" Target="{Binding ElementName=TextReportFrequency}"/>
+                    <Label Content="_Report frequency" Target="{Binding ElementName=TextReportFrequency}"/>
                     <TextBox x:Name="TextReportFrequency" Width="150" Text="{Binding ReportFrequency, Mode=TwoWay, ValidatesOnDataErrors=True}" />
                 </StackPanel>
 

@@ -75,6 +75,7 @@
     <Compile Include="ViewModel\Sorter\KeyPairVm.cs" />
     <Compile Include="ViewModel\Sorter\SorterVm.cs" />
     <Compile Include="ViewModel\Sorter\StageVm.cs" />
+    <Compile Include="ViewModel\Test\MakeSorterEvalVm.cs" />
     <Compile Include="View\Common\BrushFactory.cs" />
     <Compile Include="View\Common\BrushLegendControl.xaml.cs">
       <DependentUpon>BrushLegendControl.xaml</DependentUpon>
@@ -110,8 +111,8 @@
       <DependentUpon>SorterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Sorter\StageControl.cs" />
-    <Compile Include="View\Test\SwitchableDispatchControl.xaml.cs">
-      <DependentUpon>SwitchableDispatchControl.xaml</DependentUpon>
+    <Compile Include="View\Test\MakeSorterEvalControl.xaml.cs">
+      <DependentUpon>MakeSorterEvalControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Test\TestSorterControl.xaml.cs">
       <DependentUpon>TestSorterControl.xaml</DependentUpon>
@@ -168,7 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Test\SwitchableDispatchControl.xaml">
+    <Page Include="View\Test\MakeSorterEvalControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

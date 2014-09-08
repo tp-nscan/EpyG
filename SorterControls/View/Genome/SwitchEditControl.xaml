@@ -8,6 +8,13 @@
              d:DataContext="{d:DesignInstance genome:DesignSwitchEditVm, IsDesignTimeCreatable=True}"
              >
     <Grid>
+        <Grid.Resources>
+            
+            <Style TargetType="TextBox">
+            </Style>
+            
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="6"/>

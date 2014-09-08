@@ -64,6 +64,34 @@ namespace SorterControls.View.Common
             return _grayThenBlueToRedBrushes;
         }
 
+        static List<Brush> _grayThenBlueToBlackBrushes;
+        public static IReadOnlyList<Brush> GrayThenBlueToBlackBrushes()
+        {
+            if ((_grayThenBlueToBlackBrushes != null) && (_grayThenBlueToBlackBrushes.Count == 16))
+            {
+                return _grayThenBlueToBlackBrushes;
+            }
+            _grayThenBlueToBlackBrushes = new List<Brush>();
+            _grayThenBlueToBlackBrushes.Add(Brushes.LightGray);
+
+            for (float i = 1; i < 16; i++)
+            {
+                var scb = new SolidColorBrush(
+                    new Color
+                    {
+                        ScA = (float)1.0,
+                        ScB = (float)(1.0 - i / 32.0),
+                        ScG = (float)(0.5 - i / 32.0),
+                        ScR = (float)(0.5 - i / 32.0)
+                    });
+
+                scb.Freeze();
+                _grayThenBlueToBlackBrushes.Add(scb);
+            }
+
+            return _grayThenBlueToBlackBrushes;
+        }
+
 
         public static Brush LogBrushOfInt(int value, int max, IReadOnlyList<Brush> brushList)
         {

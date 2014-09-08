@@ -59,6 +59,10 @@
       <Project>{1163fb11-3cd2-4338-8dfc-9de7094491a8}</Project>
       <Name>FSharpLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sorting\Sorting.csproj">
+      <Project>{e5827c97-e3d1-4f30-b493-7bea79dbd877}</Project>
+      <Name>Sorting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

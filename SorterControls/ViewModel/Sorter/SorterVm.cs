@@ -82,30 +82,57 @@ namespace SorterControls.ViewModel.Sorter
                 );
         }
 
-        //public static ISorterVm ToStagedSorterVm(
-        //    this ISorterEval sorterEval,
-        //    double switchWidth,
-        //    double lineThickness,
-        //    Brush lineBrush,
-        //    Brush backgroundBrush
-        //)
-        //{
-        //    return new SorterVmImpl(
-        //            keyCount: sorterEval.KeyCount,
-        //            stageVms: sorterEval.ToStagedSorter().SorterStages.Select
-        //                (
-        //                    ss => ss.ToStageVm
-        //                        (
-        //                            switchWidth: switchWidth,
-        //                            useMax: sorterEval.SwitchableGroupCount,
-        //                            lineThickness: lineThickness,
-        //                            lineBrush: lineBrush,
-        //                            backgroundBrush: backgroundBrush,
-        //                            switchBrushes: BrushFactory.GrayThenBlueToRedBrushes()
-        //                        )
-        //                ).ToList()
-        //        );
-        //}
+        public static ISorterVm ToStagedSorterVm(
+            this ISorterEval sorterEval,
+            Brush lineBrush,
+            Brush backgroundBrush
+        )
+        {
+            return new SorterVmImpl(
+                    keyCount: sorterEval.KeyCount,
+                    stageVms: sorterEval.ToStagedSorter().SorterStages.Select
+                        (
+                            ss => ss.ToStageVm
+                                (
+                                    switchWidth: StandardSwitchWidth,
+                                    useMax: sorterEval.SwitchableGroupCount,
+                                    lineThickness: StandardineThickness,
+                                    lineBrush: lineBrush,
+                                    backgroundBrush: backgroundBrush,
+                                    switchBrushes: sorterEval.Success ?
+                                                    BrushFactory.GrayThenBlueToBlackBrushes()
+                                                    :
+                                                    BrushFactory.GrayThenBlueToRedBrushes()
+                                )
+                        ).ToList()
+                );
+        }
+
+
+        public static ISorterVm ToStagedSorterVm(
+            this ISorterEval sorterEval,
+            double switchWidth,
+            double lineThickness,
+            Brush lineBrush,
+            Brush backgroundBrush
+        )
+        {
+            return new SorterVmImpl(
+                    keyCount: sorterEval.KeyCount,
+                    stageVms: sorterEval.ToStagedSorter().SorterStages.Select
+                        (
+                            ss => ss.ToStageVm
+                                (
+                                    switchWidth: switchWidth,
+                                    useMax: sorterEval.SwitchableGroupCount,
+                                    lineThickness: lineThickness,
+                                    lineBrush: lineBrush,
+                                    backgroundBrush: backgroundBrush,
+                                    switchBrushes: BrushFactory.GrayThenBlueToBlackBrushes()
+                                )
+                        ).ToList()
+                );
+        }
     }
 
 

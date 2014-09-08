@@ -49,24 +49,13 @@ namespace EpyG.ViewModel.Pages.Test.Sorter
             }
         }
 
-        //private string _serializedGenomeSequence;
-        //public string SerializedGenomeSequence
-        //{
-        //    get { return _serializedGenomeSequence; }
-        //    set
-        //    {
-        //        _serializedGenomeSequence = value;
-        //        SequenceWasParsedCorrectly = ParseGenomeSequence();
-        //        OnPropertyChanged("SerializedGenomeSequence");
-        //    }
-        //}
-
         bool ParseGenomeSequence()
         {
             try
             {
                 var sorter = SorterJson.ToSorter();
                 KeyCount = sorter.KeyCount;
+                CanNavigate = true;
                 Switches = sorter.KeyPairs.ToSerialized();
             }
             catch (Exception)
@@ -78,16 +67,18 @@ namespace EpyG.ViewModel.Pages.Test.Sorter
 
         public IReadOnlyList<IKeyPair> KeyPairs { get; set; }
 
-        private bool _sequenceWasParsedCorrectly = true;
-        public bool SequenceWasParsedCorrectly
+        private bool SequenceWasParsedCorrectly { get; set; }
+
+        private bool _canNavigate;
+        public bool CanNavigate
         {
-            get { return _sequenceWasParsedCorrectly; }
+            get { return _canNavigate; }
             set
             {
-                if (_sequenceWasParsedCorrectly != value)
+                if (_canNavigate != value)
                 {
-                    _sequenceWasParsedCorrectly = value;
-                    OnPropertyChanged("SequenceWasParsedCorrectly");
+                    _canNavigate = value;
+                    OnPropertyChanged("CanNavigate");
                     CommandManager.InvalidateRequerySuggested();
                 }
             }
@@ -99,7 +90,7 @@ namespace EpyG.ViewModel.Pages.Test.Sorter
             {
                 if (columnName == "SorterJson")
                 {
-                    return (_sequenceWasParsedCorrectly) ? null : "Incorrect sorter JSON";
+                    return (SequenceWasParsedCorrectly) ? null : "Incorrect sorter JSON";
                 }
                 return null;
             }

@@ -20,7 +20,7 @@ namespace Sorting.Evals
 
     public static class SortResult
     {
-        public static ISortResult ToSorterResult(this ISorter sorter)
+        public static ISortResult ToFullSorterResult(this ISorter sorter)
         {
             var switchables = Switchable.AllSwitchablesForKeyCount(sorter.KeyCount).ToSwitchableGroup
                 (

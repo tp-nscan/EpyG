@@ -29,30 +29,30 @@ namespace Sorting.Stages
             return new StagedSorterImpl<T>(keyCount, sorterStages);
         }
 
-        public static IStagedSorter<ISwitchEval> ToStagedSorter(this ISorterEval sorter, bool includeUnused)
+        public static IStagedSorter<ISwitchEval> ToStagedSorter(this ISorterEval sorterEval, bool includeUnused)
         {
             if (includeUnused)
             {
                 return new StagedSorterImpl<ISwitchEval>
                     (
-                        keyCount: sorter.KeyCount,
+                        keyCount: sorterEval.KeyCount,
                         sorterStages: ImmutableList<ISorterStage<ISwitchEval>>.Empty.AddRange
                         (
-                            sorter.SwitchEvals
+                            sorterEval.SwitchEvals
                                   .ToList()
-                                  .ToSorterStages(sorter.KeyCount))
+                                  .ToSorterStages(sorterEval.KeyCount))
                     );
             }
 
             return new StagedSorterImpl<ISwitchEval>
                 (
-                    keyCount: sorter.KeyCount,
+                    keyCount: sorterEval.KeyCount,
                     sorterStages: ImmutableList<ISorterStage<ISwitchEval>>.Empty.AddRange
                     (
-                        sorter.SwitchEvals
+                        sorterEval.SwitchEvals
                               .Where(ev => ev.UseCount > 0.1)
                               .ToList()
-                              .ToSorterStages(sorter.KeyCount))
+                              .ToSorterStages(sorterEval.KeyCount))
                 );
         }
 
@@ -62,7 +62,17 @@ namespace Sorting.Stages
                 (
                     keyCount: sorter.KeyCount,
                     sorterStages: ImmutableList<ISorterStage<IKeyPair>>.Empty.AddRange(
-                        sorter.KeyPairs.ToList().ToSorterStages(sorter.KeyCount))
+                        sorter.KeyPairs.ToSorterStages(sorter.KeyCount))
+                );
+        }
+
+        public static IStagedSorter<ISwitchEval> ToStagedSorter(this ISorterEval sorterEval)
+        {
+            return new StagedSorterImpl<ISwitchEval>
+                (
+                    keyCount: sorterEval.KeyCount,
+                    sorterStages: ImmutableList<ISorterStage<ISwitchEval>>.Empty.AddRange(
+                        sorterEval.SwitchEvals.ToSorterStages(sorterEval.KeyCount))
                 );
         }
 

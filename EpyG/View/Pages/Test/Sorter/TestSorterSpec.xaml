@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
+             d:DesignHeight="800" d:DesignWidth="600">
     <Grid Style="{StaticResource ContentRoot}">
         
         <Grid.Resources>
@@ -14,9 +14,10 @@
                 <Setter Property="Margin" Value="0,0,0,4" />
             </Style>
             <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                <Setter Property="Width" Value="130" />
+                <Setter Property="Width" Value="140" />
                 <Setter Property="Margin" Value="10" />
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
 
             <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
@@ -24,8 +25,14 @@
             </Style>
 
             <Style TargetType="TextBlock">
-                <Setter Property="Padding" Value="0,3" />
-                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Width" Value="145" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="15,5" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="10" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
 
@@ -37,32 +44,42 @@
                 <TextBlock Text="Input:" Margin="0,20,0,10" Style="{StaticResource Heading2}" />
                 
                 <StackPanel>
-                    <Label Content="Paste sorter JSON:"/>
-                    <TextBox TextWrapping="Wrap" Width="250" Height="200"  Text="{Binding SorterJson,
-                        UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource, ValidatesOnDataErrors=True}"/>
+                    <Label Content="_Paste sorter JSON:" Target="{Binding ElementName=TextBoxSorterJson}"/>
+                    <TextBox 
+                        x:Name="TextBoxSorterJson"
+                        TextWrapping="Wrap" Width="250" Height="200"  
+                        Text="{Binding SorterJson, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource, ValidatesOnDataErrors=True}"/>
                 </StackPanel>
 
 
                 <TextBlock Text="Parsed JSON:" Margin="0,20,0,10" Style="{StaticResource Heading2}" />
                 
-                <StackPanel Margin="0,10" >
-                    <Label Content="Key count" />
-                    <TextBlock Width="50" Text="{Binding KeyCount}" />
+                <StackPanel Orientation="Vertical">
+                    <StackPanel>
+                        <TextBlock Text="Key count" />
+                        <TextBlock Width="50" Margin="0" Padding="0,15" Text="{Binding KeyCount}" />
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Switches" VerticalAlignment="Top" />
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Width="250" Height="200" Margin="2"
+                                       Padding="0"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding Switches}" />
+                        </Border>
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel>
-                    <Label Content="Switches" VerticalAlignment="Top" />
-                    <TextBlock Width="250" Height="200" Text="{Binding Switches}" />
-                </StackPanel>
-                
-                <mui:BBCodeBlock
+                <Border                         
                     HorizontalAlignment="Center"
                     Margin="20"
-                    IsEnabled="{Binding SequenceWasParsedCorrectly}"
-                    BBCode=" [url=/View/Pages/Test/Sorter/TestSorter.xaml]Test[/url]" 
-                    Style="{StaticResource Heading2}" 
-                />
-                
+                    IsEnabled="{Binding CanNavigate}">
+                    <mui:BBCodeBlock
+                        BBCode=" [url=/View/Pages/Test/Sorter/TestSorter.xaml]Test[/url]" 
+                        Style="{StaticResource Heading2}" 
+                    />
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Grid>

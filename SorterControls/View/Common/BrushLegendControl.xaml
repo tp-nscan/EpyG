@@ -10,7 +10,7 @@
         <Grid.Resources>
             <ObjectDataProvider x:Key="data"
                     ObjectType="{x:Type common:BrushFactory}"
-                    MethodName="GrayThenBlueToRedBrushes" />
+                    MethodName="GrayThenBlueToBlackBrushes" />
         </Grid.Resources>
         <ItemsControl ItemsSource="{Binding Source={StaticResource data}}"
                       ItemTemplate="{DynamicResource CellTemplate}">
