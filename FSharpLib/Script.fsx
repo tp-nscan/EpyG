@@ -1,7 +1,7 @@
 ﻿
 
-#load "SorterFs.fs"
-open SorterFs
+#load "SorterFsOld.fs"
+open SorterFsOld
 
 let sw = {Low=0; High=1}
 

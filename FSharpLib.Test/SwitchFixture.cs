@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SorterFs;
+using SorterFsOld;
 
 namespace FSharpLib.Test
 {
@@ -31,15 +31,8 @@ namespace FSharpLib.Test
         [TestMethod]
         public void TestSpanner()
         {
-
-            var res = SwitchFunctions.SpanFolder(4);
-
-            res = SwitchFunctions.SpanFolder(3);
-
-            res = SwitchFunctions.SpanFolder(5);
-
-            res = SwitchFunctions.SpanFolder(16);
-
+            var res = SwitchFunctions.SpanFolder(16);
+            System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(res));
         }
 
         [TestMethod]
@@ -52,11 +45,11 @@ namespace FSharpLib.Test
                 new Switch(0, 3)
             }.AsEnumerable();
 
-            var res = SwitchFunctions.SwitchOffset(testSwitches, 2);
+            var res = SwitchFunctions.SwitchListOffset(testSwitches, 2);
         }
 
         [TestMethod]
-        public void TestSwitchMultiOffset()
+        public void TestSwitchListArrayExtend()
         {
             var testSwitches = new[]
             {
@@ -65,28 +58,38 @@ namespace FSharpLib.Test
                 //new Switch(0, 3)
             }.AsEnumerable();
 
-            var res = SwitchFunctions.SwitchMultiOffset(testSwitches, 1, 2);
+            var res = SwitchFunctions.SwitchListArrayExtend(testSwitches, 1, 2);
 
-            var res2 = SwitchFunctions.SwitchMultiOffset(res, 4, 4);
+            var res2 = SwitchFunctions.SwitchListArrayExtend(res, 4, 4);
             System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(res2));
         }
 
         [TestMethod]
+        public void TestNestedSwitchArray()
+        {
+            var res = SwitchFunctions.NestedSwitchArray(new Switch(0, 2), 1, 2, 4, 2);
+
+            System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(res));
+        }
+
+        [TestMethod]
+        public void TestBitonicNestedSwitchArray()
+        {
+            var res = SwitchFunctions.BitonicNestedSwitchArray(4,2);
+
+            System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(res));
+        }
+
+
+        [TestMethod]
         public void TestBitonicSuffix()
         {
-            var testSwitches = new[]
-            {
-                new Switch(0, 1),
-                new Switch(0, 2),
-                new Switch(0, 3)
-            }.AsEnumerable();
-
             var res = SwitchFunctions.BitonicSuffix(1);
             System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(res));
         }
 
         [TestMethod]
-        public void TestAppendSwitches()
+        public void TestAppendBelow()
         {
             var testSwitches = new[]
             {
@@ -96,13 +99,14 @@ namespace FSharpLib.Test
             };
 
             var appended = SwitchFunctions.AppendBelow(testSwitches, 4);
+            System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListReport(appended));
 
         }
 
         [TestMethod]
         public void TestBitonicSwitches()
         {
-            var appended = BitonicFunctions.BitonicSwitches(4);
+            var appended = BitonicFunctions.BitonicSwitches(5);
             System.Diagnostics.Debug.WriteLine(SwitchFunctions.SwitchListIndexes(appended));
         }
 

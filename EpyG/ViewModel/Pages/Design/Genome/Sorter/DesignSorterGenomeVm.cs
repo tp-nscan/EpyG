@@ -34,8 +34,8 @@ namespace EpyG.ViewModel.Pages.Design.Genome.Sorter
 
             SorterVm = sorterGenomeEditorVm.KeyPairs
                                .ToSorter(GenomeEditorVm.KeyCount)
-                               .ToFullSorterResult()
-                               .ToSorterEval()
+                               //.ToFullSorterResult()
+                               //.ToSorterEval()
                                .ToStagedSorterVm(new SolidColorBrush(Colors.Black),
                                                  new SolidColorBrush(Colors.WhiteSmoke));
         }
