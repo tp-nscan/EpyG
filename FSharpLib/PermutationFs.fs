@@ -1,5 +1,6 @@
 ﻿namespace PermutationFs
 open System
+open SorterFsOld
 
 type PermutationType = {Degree:int; RepArray:int array }
 
@@ -38,5 +39,8 @@ module Permutation =
     let pp2 = create [|1;3;2;4;0;|]
 
     let trans = apply pp2 [1; 3; 2; 4; 0]
-    
 
+    let sw = {Low=3; High=4}
+    
+    let switchPermute (perm) sw =
+        {Low=perm.RepArray.[sw.Low]; High=perm.RepArray.[sw.High]}
