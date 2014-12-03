@@ -1,15 +1,23 @@
-﻿namespace CommonLibrary
-    module Railroad = 
-    // the two-track type
-    type Result<'TSuccess,'TFailure> = 
-        | Success of 'TSuccess
-        | Failure of 'TFailure
+﻿namespace test
 
-    // convert a single value into a two-track result
-    let succeed x = 
-        Success x
+module Railroad =
+    type EmailAddress = EmailAddress of string
+    type ZipCode = ZipCode of string
+    type StateCode = StateCode of string
 
-    // convert a single value into a two-track result
-    let fail x = 
-        Failure x
+    let CreateEmailAddress (s:string) = 
+        if System.Text.RegularExpressions.Regex.IsMatch(s,@"^\S+@\S+\.\S+$") 
+            then Some (EmailAddress s)
+            else None
+
+
+
+
+
+
+
+
+
+//let ada = ["a"; "b"; "c"] |> List.map Railroad.EmailAddress;;
+//let (Railroad.EmailAddress a') = a;;
 

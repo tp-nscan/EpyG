@@ -19,6 +19,12 @@ module SwitchFunctions =
     let IsValid (switch:Switch) =
         if switch.Low < 0 then false
         elif  switch.High < 0 then false
+        elif switch.Low > switch.High then false
+        else true
+
+    let IsStrictlyValid (switch:Switch) =
+        if switch.Low < 0 then false
+        elif  switch.High < 1 then false
         elif switch.Low >= switch.High then false
         else true
 
@@ -33,17 +39,16 @@ module SwitchFunctions =
     let SpanFoldPow (logKeys:int) =
         SpanFolder(BasicMath.IntPow 2 logKeys)
 
-
     let SpanStepper (keyCount:int) =
             let span = keyCount/2
             [0 .. (keyCount - span - 1)]
-            |> List.map (fun x -> { Low =x; High =x+span})
+            |> List.map ( fun x -> { Low=x; High=x+span} )
 
     let SpanStepPow (logKeys:int) =
         SpanStepper(BasicMath.IntPow 2 logKeys)
 
     let AppendBelow switches offset =
-        switches |> Seq.map (fun (sw) -> seq [sw;  {Low=sw.Low + offset; High=sw.High + offset}]) 
+        switches |> Seq.map ( fun (sw) -> seq [sw;  {Low=sw.Low + offset; High=sw.High + offset}] ) 
                  |> Seq.concat
 
 
